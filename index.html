@@ -1,96 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅 | 🤖⏳</title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, sans-serif; }
-body { background-color: #0a0a0f; color: #e5e7eb; padding-bottom: 150px; overflow-x: hidden; }
-a { text-decoration: none; }
-.hidden { display: none !important; }
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.glass-panel { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1rem; }
-.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 100; display: flex; align-items: center; justify-content: center; }
-.modal-box { max-width: 28rem; width: 90%; padding: 2rem; box-shadow: 0 0 40px rgba(59, 130, 246, 0.2); text-align: center; }
-.doraemon-img { width: 6.5rem; height: 6.5rem; border-radius: 50%; border: 3px solid #3b82f6; margin: 0 auto 1rem; display: block; }
-.title-gradient { font-size: 2rem; font-weight: 800; background: linear-gradient(to right, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.btn { padding: 0.75rem 1rem; border-radius: 0.5rem; font-weight: 600; cursor: pointer; border: none; margin: 0.5rem 0; width: 100%; color: white; display: flex; align-items: center; justify-content: center; }
-.btn-blue { background: #3b82f6; }
-.btn-telegram { background: #0088cc; }
-.btn-dark { background: #111827; }
-.banner { background: linear-gradient(to right, #dc2626, #ea580c); color: white; padding: 0.6rem; font-size: 0.8rem; font-weight: bold; text-align: center; }
-.container { max-width: 50rem; margin: 0 auto; padding: 2rem 1rem; }
-.course-card { cursor: pointer; padding: 1.5rem; margin-bottom: 1rem; border: 1px solid rgba(255,255,255,0.05); border-radius: 1rem; }
-.lecture-card { padding: 1.25rem; margin-bottom: 1rem; border: 1px solid rgba(255,255,255,0.05); border-radius: 1rem; }
-.lecture-actions { display: flex; gap: 0.5rem; margin-top: 10px; }
-.footer-fixed { position: fixed; bottom: 0; left: 0; width: 100%; padding: 1rem; background: #0a0a0f; border-top: 1px solid #1f2937; display: flex; gap: 10px; z-index: 50; }
-.footer-btn { flex: 1; padding: 1rem; border-radius: 0.8rem; font-weight: bold; text-align: center; color: white; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅 | 🤖⏳</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+        body { background-color: #0a0a0f; color: #e5e7eb; overflow-x: hidden; padding-bottom: 150px; }
+        a { text-decoration: none; }
+        .hidden { display: none !important; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .text-center { text-align: center; }
+        .w-full { width: 100%; }
+        
+        .glass-panel { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1rem; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 100; }
+        .modal-box { max-width: 28rem; width: 90%; padding: 2rem; box-shadow: 0 0 40px rgba(59, 130, 246, 0.2); }
+        .doraemon-img { width: 6.5rem; height: 6.5rem; object-fit: cover; border-radius: 50%; border: 3px solid #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); margin: 0 auto 1rem auto; display: block; }
+        .title-gradient { font-size: 2rem; font-weight: 800; background: linear-gradient(to right, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+        .subtitle { color: #9ca3af; font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.4; }
+        .tagline { color: #9ca3af; font-size: 0.95rem; font-weight: 500; font-style: italic; margin-bottom: 1rem; }
+        .btn { padding: 0.75rem 1rem; border-radius: 0.5rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; border: none; transition: 0.3s; }
+        .btn-blue { background: #3b82f6; color: white; }
+        .btn-dark { background: #111827; color: #d1d5db; border: 1px solid #1f2937; }
+        .btn-sm { padding: 0.6rem 0.8rem; font-size: 0.85rem; flex: 1; }
+        .btn-gray { background: #1f2937; color: #d1d5db; border: 1px solid #374151; }
+        .banner { background: linear-gradient(to right, #dc2626, #ea580c); color: white; padding: 0.6rem; font-size: 0.8rem; font-weight: bold; text-align: center; }
+        .banner-links { display: inline-flex; gap: 10px; margin-left: 10px; }
+        .banner a { background: rgba(255,255,255,0.2); padding: 0.2rem 0.6rem; border-radius: 999px; color: white; }
+        .header-section { padding: 3rem 1rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .container { max-width: 50rem; margin: 0 auto; padding: 2rem 1rem; }
+        .course-card { cursor: pointer; padding: 1.5rem; text-align: left; transition: 0.3s; margin-bottom: 1rem; }
+        .course-card:hover { border-color: #3b82f6; background: rgba(59, 130, 246, 0.05); }
+        .lecture-card { padding: 1.25rem; margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1rem; }
+        .lecture-info { display: flex; align-items: flex-start; gap: 0.8rem; }
+        .circle-num { width: 2.2rem; height: 2.2rem; border-radius: 50%; background: rgba(59, 130, 246, 0.2); color: #3b82f6; font-weight: bold; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .folder-icon { background: rgba(139, 92, 246, 0.2) !important; color: #8b5cf6 !important; }
+        .lecture-actions-row { display: flex; flex-direction: row; gap: 0.6rem; width: 100%; }
+        .top-bar { padding: 1rem; position: sticky; top: 0; z-index: 10; border-radius: 0; border-top: none; }
+        .footer-fixed { position: fixed; bottom: 0; left: 0; width: 100%; padding: 1rem; background: #0a0a0f; border-top: 1px solid #1f2937; display: flex; gap: 10px; z-index: 50; }
+        .footer-btn { flex: 1; padding: 1rem; border-radius: 0.8rem; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px; color: white; }
+    </style>
 </head>
 <body>
 
-<div id="welcomeModal" class="modal-overlay">
-    <div class="glass-panel modal-box">
-        <img src="1000001644.jpg" alt="Doraemon" class="doraemon-img">
-        <h2 class="title-gradient">𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</h2>
-        <p style="color:#9ca3af; margin-bottom:1.5rem;">Join our official channels for important updates.</p>
-        <a href="https://t.me/ssc_batches_video" class="btn btn-telegram">Join Telegram</a>
-        <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" class="btn btn-blue">Join WhatsApp</a>
-        <button onclick="document.getElementById('welcomeModal').style.display='none'" class="btn btn-dark">I Have Already Joined</button>
+    <div id="welcomeModal" class="modal-overlay flex items-center justify-center">
+        <div class="glass-panel modal-box text-center">
+            <img src="1000001644.jpg" alt="Doraemon" class="doraemon-img">
+            <h2 class="title-gradient">𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</h2>
+            <p class="subtitle">Join our official channels for important updates. Beware of fake channels asking for money!</p>
+            <div class="flex flex-col gap-3">
+                <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" target="_blank" class="btn btn-blue">Join WhatsApp</a>
+                <button onclick="closeModal()" class="btn btn-dark">I Have Already Joined</button>
+            </div>
+        </div>
     </div>
-</div>
 
-<div class="banner">⚠️ All courses are 100% FREE! <a href="https://t.me/do2006rabot" style="color:white; text-decoration:underline;">Contact</a></div>
-
-<div id="pageDashboard" class="container">
-    <div style="text-align:center; padding:2rem 0;">
-        <img src="1000001644.jpg" class="doraemon-img">
-        <h1 class="title-gradient">𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</h1>
-        <p style="color:#9ca3af;">'Time machine kharab hai, isliye yahan fash gaya hu 🤖⏳'</p>
+    <div class="banner">
+        ⚠️ All courses are 100% FREE. Beware of scams!
+        <div class="banner-links"><a href="https://t.me/do2006rabot" target="_blank">Contact</a></div>
     </div>
-    <h2>Available Course</h2>
-    <div class="glass-panel course-card" onclick="openPage('pageFolders')">
-        <h3>ACHIEVER 8.0</h3>
+
+    <div id="pageDashboard">
+        <div class="header-section text-center">
+            <img src="1000001644.jpg" alt="Doraemon" class="doraemon-img" style="width: 7.5rem; height: 7.5rem;">
+            <h1 class="title-gradient" style="font-size: 2.5rem;">𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</h1>
+            <p class="tagline">'Time machine kharab hai, isliye yahan fash gaya hu 🤖⏳'</p>
+        </div>
+        <div class="container">
+            <h2 style="margin-bottom: 1.5rem; font-size: 1.3rem;">Available Course</h2>
+            <div class="glass-panel course-card" onclick="openPage('pageFolders')">
+                <div class="flex items-center gap-4">
+                    <div class="circle-num" style="background: #3b82f6; color: white; width: 3.5rem; height: 3.5rem;">📂</div>
+                    <div><h3 style="color: white; font-size: 1.4rem;">ACHIEVER 8.0</h3></div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-<div id="pageFolders" class="hidden container">
-    <button onclick="openPage('pageDashboard')" class="btn btn-dark" style="width:auto;">← Back</button>
-    <div class="glass-panel course-card" onclick="openPage('pageLecturesGrammar')">GRAMMER</div>
-    <div class="glass-panel course-card" onclick="openPage('pageLecturesPractice')">COMPLETE PRACTICE BATCH</div>
-</div>
+    <div id="pageFolders" class="hidden">
+        <div class="glass-panel top-bar flex items-center justify-between"><button onclick="openPage('pageDashboard')" style="background:none; border:none; color:#3b82f6; font-weight:bold; cursor:pointer;">← Back</button><h2>ACHIEVER 8.0</h2><div style="width: 40px;"></div></div>
+        <div class="container">
+            <div class="glass-panel course-card" onclick="openPage('pageLecturesGrammar')"><div class="flex items-center gap-4"><div class="circle-num folder-icon">📁</div><h3 style="color: white; font-size: 1.2rem;">GRAMMER</h3></div></div>
+            <div class="glass-panel course-card" onclick="openPage('pageLecturesPractice')"><div class="flex items-center gap-4"><div class="circle-num folder-icon">📁</div><h3 style="color: white; font-size: 1.2rem;">COMPLETE PRACTICE BATCH</h3></div></div>
+        </div>
+    </div>
 
-<div id="pageLecturesGrammar" class="hidden container">
-    <button onclick="openPage('pageFolders')" class="btn btn-dark" style="width:auto;">← Back</button>
-    <div class="glass-panel lecture-card"><h4>Article -1</h4><div class="lecture-actions"><a href="https://publicbotshub.blogspot.com/p/file-stream-bot.html?watch=6a0e5fb4fe41598e9bc97041" class="btn btn-blue">Video</a></div></div>
-    <div class="glass-panel lecture-card"><h4>Article -2</h4><div class="lecture-actions"><a href="https://publicbotshub.blogspot.com/p/file-stream-bot.html?watch=6a0e5fcbfe41598e9bc97043" class="btn btn-blue">Video</a></div></div>
-    <div class="glass-panel lecture-card"><h4>Article -3</h4><div class="lecture-actions"><a href="https://publicbotshub.blogspot.com/p/file-stream-bot.html?watch=6a0e5fd6fe41598e9bc97045" class="btn btn-blue">Video</a></div></div>
-</div>
+    <div id="pageLecturesGrammar" class="hidden">
+        <div class="glass-panel top-bar flex items-center justify-between"><button onclick="openPage('pageFolders')" style="background:none; border:none; color:#3b82f6; font-weight:bold; cursor:pointer;">← Back</button><h2>GRAMMER</h2><div></div></div>
+        <div class="container">
+            <div class="glass-panel lecture-card"><div class="lecture-info"><div class="circle-num">1</div><h4>Article -1</h4></div><div class="lecture-actions-row"><a href="https://publicbotshub.blogspot.com/p/file-stream-bot.html?watch=6a0e5fb4fe41598e9bc97041" target="_blank" class="btn btn-sm btn-blue">Video</a></div></div>
+            <div class="glass-panel lecture-card"><div class="lecture-info"><div class="circle-num">2</div><h4>Article -2</h4></div><div class="lecture-actions-row"><a href="https://publicbotshub.blogspot.com/p/file-stream-bot.html?watch=6a0e5fcbfe41598e9bc97043" target="_blank" class="btn btn-sm btn-blue">Video</a></div></div>
+            <div class="glass-panel lecture-card"><div class="lecture-info"><div class="circle-num">3</div><h4>Article -3</h4></div><div class="lecture-actions-row"><a href="https://publicbotshub.blogspot.com/p/file-stream-bot.html?watch=6a0e5fd6fe41598e9bc97045" target="_blank" class="btn btn-sm btn-blue">Video</a></div></div>
+        </div>
+    </div>
 
-<div id="pageLecturesPractice" class="hidden container">
-    <button onclick="openPage('pageFolders')" class="btn btn-dark" style="width:auto;">← Back</button>
-    <div class="glass-panel lecture-card"><h4>Lecture 1 - Cloze Test</h4><div class="lecture-actions"><a href="..." class="btn btn-blue">Video</a><a href="..." class="btn btn-gray">PDF</a></div></div>
-    <div class="glass-panel lecture-card"><h4>Lecture 2 - Vocabulary</h4><div class="lecture-actions"><a href="..." class="btn btn-blue">Video</a><a href="..." class="btn btn-gray">PDF</a></div></div>
-    <div class="glass-panel lecture-card"><h4>Lecture 3 - Cloze Test+Passage+PQRS</h4><div class="lecture-actions"><a href="..." class="btn btn-blue">Video</a></div></div>
-</div>
+    <div id="pageLecturesPractice" class="hidden">
+        <div class="glass-panel top-bar flex items-center justify-between"><button onclick="openPage('pageFolders')" style="background:none; border:none; color:#3b82f6; font-weight:bold; cursor:pointer;">← Back</button><h2>COMPLETE PRACTICE</h2><div></div></div>
+        <div class="container">
+            <div class="glass-panel lecture-card"><div class="lecture-info"><div class="circle-num">1</div><h4>Lecture 1 - Cloze Test Sentence Arrangement</h4></div><div class="lecture-actions-row"><a href="https://publicbotshub.blogspot.com/p/file-stream-bot.html?watch=6a0e562afe41598e9bc97037" target="_blank" class="btn btn-sm btn-blue">Video</a><a href="https://publicbotshub.blogspot.com/p/file-stream-bot.html?dl=6a0e5633fe41598e9bc97039" target="_blank" class="btn btn-sm btn-gray">PDF</a></div></div>
+            <div class="glass-panel lecture-card"><div class="lecture-info"><div class="circle-num">2</div><h4>Lecture 2 - Vocabulary</h4></div><div class="lecture-actions-row"><a href="https://publicbotshub.blogspot.com/p/file-stream-bot.html?watch=6a0e5eaefe41598e9bc9703d" target="_blank" class="btn btn-sm btn-blue">Video</a><a href="https://publicbotshub.blogspot.com/p/file-stream-bot.html?dl=6a0e5ec6fe41598e9bc9703f" target="_blank" class="btn btn-sm btn-gray">PDF</a></div></div>
+            <div class="glass-panel lecture-card"><div class="lecture-info"><div class="circle-num">3</div><h4>Lecture 3 - Cloze Test + Passage + PQRS</h4></div><div class="lecture-actions-row"><a href="https://publicbotshub.blogspot.com/p/file-stream-bot.html?watch=6a0e675dfe41598e9bc97047" target="_blank" class="btn btn-sm btn-blue">Video</a></div></div>
+        </div>
+    </div>
 
-<div class="footer-fixed">
-    <a href="https://t.me/ssc_batches_video" class="footer-btn" style="background:#0088cc;">Telegram</a>
-    <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" class="footer-btn" style="background:#25D366;">WhatsApp</a>
-</div>
+    <div class="footer-fixed">
+        <a href="https://t.me/ssc_batches_video" target="_blank" class="footer-btn" style="background:#0088cc;">✈️ Telegram</a>
+        <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" target="_blank" class="footer-btn" style="background:#25D366;">💬 WhatsApp</a>
+    </div>
 
-<script>
-function openPage(p) {
-    document.getElementById('pageDashboard').classList.add('hidden');
-    document.getElementById('pageFolders').classList.add('hidden');
-    document.getElementById('pageLecturesGrammar').classList.add('hidden');
-    document.getElementById('pageLecturesPractice').classList.add('hidden');
-    document.getElementById(p).classList.remove('hidden');
-}
-</script>
+    <script>
+        function closeModal() { document.getElementById('welcomeModal').style.display = 'none'; }
+        function openPage(pageId) {
+            document.getElementById('pageDashboard').classList.add('hidden');
+            document.getElementById('pageFolders').classList.add('hidden');
+            document.getElementById('pageLecturesGrammar').classList.add('hidden');
+            document.getElementById('pageLecturesPractice').classList.add('hidden');
+            document.getElementById(pageId).classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+    </script>
 </body>
 </html>
