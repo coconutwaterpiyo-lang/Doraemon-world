@@ -5,15 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</title>
     
-    <!-- PWA Manifest (service worker fake file ke liye) -->
-    <link rel="manifest" href="/manifest.json">
-    
-    <!-- Icons for home screen (Apple & Android fallback) -->
-    <link rel="apple-touch-icon" href="1000001644.jpg">
+    <!-- PWA meta -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Doraemon World">
     <meta name="theme-color" content="#0a1a3a">
+    <link rel="apple-touch-icon" href="#" id="appleTouchIcon">
+    <link rel="manifest" href="#" id="manifestLink">
     
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,'Segoe UI',sans-serif;}
@@ -117,7 +115,7 @@
         <div class="course-card" onclick="openPage('pageSSCGS')"><div class="course-card-content"><div class="circle-num folder-icon">🌍</div><h3 style="color:#fff">GS</h3></div><span class="arrow-right">❯</span></div>
         <div class="course-card" onclick="openPage('pageSSCReasoning')"><div class="course-card-content"><div class="circle-num folder-icon">🧠</div><h3 style="color:#fff">Reasoning</h3></div><span class="arrow-right">❯</span></div>
     </div></div>
-    <!-- SSC subpages -->
+    <!-- SSC subpages (unchanged) -->
     <div id="pageSSCBatches" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>CWxSW</h2><div></div></div><div class="container"><input type="text" class="search-box" placeholder="🔍 Search courses..." onkeyup="filterItems(this, '.course-card')"><a href="https://selectionway.edgeone.app/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num" style="background:#8b5cf6;color:#fff">🚀</div><div><h3>Selection Way</h3><span class="course-subtitle">NEW BATCH</span></div></div><span class="arrow-right">❯</span></a><a href="https://sscpratham17.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num" style="background:#3b82f6;color:#fff">📘</div><div><h3>SSC Pratham 17</h3><span class="course-subtitle">BATCH</span></div></div><span class="arrow-right">❯</span></a></div></div>
     <div id="pageSSCMaths" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>Maths</h2><div></div></div><div class="container"><input type="text" class="search-box" placeholder="🔍 Search courses..." onkeyup="filterItems(this, '.course-card')"><a href="https://abhinaysirtg.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Abhinay Sir</h3><span class="course-subtitle">MATHS</span></div></div><span class="arrow-right">❯</span></a><a href="https://abhinaysirtopper.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Abhinay Sir Topper Batch</h3><span class="course-subtitle">MATHS</span></div></div><span class="arrow-right">❯</span></a><a href="https://rakeshsirmaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Rakesh Sir</h3><span class="course-subtitle">MATHS</span></div></div><span class="arrow-right">❯</span></a><a href="https://upsimaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>UP SI Maths</h3><span class="course-subtitle">MATHS</span></div></div><span class="arrow-right">❯</span></a><a href="https://gagansirmaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Gagan Sir</h3><span class="course-subtitle">MATHS</span></div></div><span class="arrow-right">❯</span></a>
     <a href="https://studyhelp.freesite.online/batches/bhutesh_math_reason.html" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">👨‍🏫</div><div><h3>Bhutesh Sir Maths</h3><span class="course-subtitle">MATH + REASONING (12 MONTHS)</span></div></div><span class="arrow-right">❯</span></a>
@@ -148,47 +146,154 @@ let scrollBtn=document.getElementById('scrollTopBtn');window.addEventListener('s
 function openPage(pageId){let pages=['pageDashboard','pageSSC','pageSSCMocks','pageSSCBatches','pageSSCMaths','pageSSCScience','pageSSCEnglish','pageSSCGS','pageSSCReasoning','pageSSCMocksParmar','pageSSCMocksParmarBomb','pageSSCMocksAll','pageSSCMocksRRBNTPC','pageSSCMocksAman','pageVocabMasteryMain','pageEnglishMadhyamMocks','pageOliveboardReasoningMain','pageMixGSPYQsMain','pageMathsPracticeMain','pagePreSectionalMocksMain','pageMainsSectionalMocksMain','pageEdiquityTimingMock'];pages.forEach(id=>{let el=document.getElementById(id);if(el)el.classList.add('hidden')});document.getElementById(pageId).classList.remove('hidden');window.scrollTo(0,0);}
 function filterItems(input,selector){let filter=input.value.toLowerCase();document.querySelectorAll(selector).forEach(item=>{let text=item.innerText.toLowerCase();item.style.display=text.includes(filter)?'':'none'})}
 
-// SERVICE WORKER: Fake /manifest.json file serve karega, taaki home screen icon dikhe
-if('serviceWorker' in navigator){
-    navigator.serviceWorker.register('/sw.js').catch(e=>console.log("SW error:",e));
-    // Dynamically create service worker script if not exists
-    (function(){
-        if(!document.querySelector('#dynamic-sw')){
-            let swScript = `
-self.addEventListener('fetch', event => {
-  const url = new URL(event.request.url);
-  if (url.pathname === '/manifest.json') {
-    event.respondWith(
-      new Response(JSON.stringify({
-        name: "Doraemon World",
-        short_name: "Doraemon",
-        start_url: "/",
-        display: "standalone",
-        icons: [
-          { src: "/1000001644.jpg", sizes: "192x192", type: "image/jpeg" },
-          { src: "/1000001644.jpg", sizes: "512x512", type: "image/jpeg" }
-        ]
-      }), {
-        headers: { 'Content-Type': 'application/json' }
-      })
-    );
-  } else if (url.pathname === '/1000001644.jpg') {
-    // Ensure image is cached or just fetch normally
-    event.respondWith(fetch(event.request));
-  }
-});
-self.addEventListener('install', event => self.skipWaiting());
-self.addEventListener('activate', event => event.waitUntil(clients.claim()));
-`;
-            let blob = new Blob([swScript], {type: 'application/javascript'});
-            let url = URL.createObjectURL(blob);
-            navigator.serviceWorker.register(url).then(reg => {
-                console.log("Dynamic SW registered", reg);
-                URL.revokeObjectURL(url);
-            }).catch(err => console.log("Dynamic SW failed", err));
-        }
-    })();
+// ========== PWA ICON FIX ==========
+// Generate a perfect square 512x512 Doraemon-style icon using canvas
+function generateIconAndManifest() {
+    return new Promise((resolve) => {
+        const canvas = document.createElement('canvas');
+        canvas.width = 512;
+        canvas.height = 512;
+        const ctx = canvas.getContext('2d');
+        
+        // Background circle (Doraemon blue)
+        ctx.beginPath();
+        ctx.arc(256, 256, 240, 0, 2 * Math.PI);
+        ctx.fillStyle = '#1E88E5';
+        ctx.fill();
+        ctx.strokeStyle = '#0D47A1';
+        ctx.lineWidth = 12;
+        ctx.stroke();
+        
+        // White face oval
+        ctx.beginPath();
+        ctx.ellipse(256, 280, 180, 160, 0, 0, 2 * Math.PI);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fill();
+        ctx.strokeStyle = '#BBDEFB';
+        ctx.lineWidth = 4;
+        ctx.stroke();
+        
+        // Eyes
+        ctx.beginPath();
+        ctx.arc(190, 220, 28, 0, 2 * Math.PI);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fill();
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(322, 220, 28, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+        
+        // Pupils
+        ctx.fillStyle = '#000000';
+        ctx.beginPath();
+        ctx.arc(190, 220, 14, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(322, 220, 14, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Eye highlights
+        ctx.fillStyle = '#FFFFFF';
+        ctx.beginPath();
+        ctx.arc(180, 210, 6, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(312, 210, 6, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Nose (red)
+        ctx.beginPath();
+        ctx.arc(256, 260, 22, 0, 2 * Math.PI);
+        ctx.fillStyle = '#E53935';
+        ctx.fill();
+        ctx.fillStyle = '#FFFFFF';
+        ctx.beginPath();
+        ctx.arc(248, 252, 5, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Mouth (big smile)
+        ctx.beginPath();
+        ctx.arc(256, 300, 70, 0.1, Math.PI - 0.1);
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 6;
+        ctx.stroke();
+        
+        // Whiskers
+        ctx.beginPath();
+        ctx.moveTo(120, 240);
+        ctx.lineTo(60, 220);
+        ctx.moveTo(120, 260);
+        ctx.lineTo(55, 260);
+        ctx.moveTo(120, 280);
+        ctx.lineTo(60, 300);
+        ctx.moveTo(392, 240);
+        ctx.lineTo(452, 220);
+        ctx.moveTo(392, 260);
+        ctx.lineTo(457, 260);
+        ctx.moveTo(392, 280);
+        ctx.lineTo(452, 300);
+        ctx.lineWidth = 5;
+        ctx.stroke();
+        
+        // Bell (yellow)
+        ctx.beginPath();
+        ctx.ellipse(256, 400, 35, 45, 0, 0, 2 * Math.PI);
+        ctx.fillStyle = '#FDD835';
+        ctx.fill();
+        ctx.fillStyle = '#F9A825';
+        ctx.beginPath();
+        ctx.ellipse(256, 415, 20, 12, 0, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.fillStyle = '#000';
+        ctx.font = 'bold 50px "Segoe UI"';
+        ctx.fillText("🔔", 238, 418);
+        
+        const iconDataURL = canvas.toDataURL('image/png');
+        
+        // Create manifest JSON
+        const manifest = {
+            name: "Doraemon World",
+            short_name: "Doraemon",
+            start_url: "/",
+            display: "standalone",
+            theme_color: "#0a1a3a",
+            background_color: "#0a1a3a",
+            icons: [
+                { src: iconDataURL, sizes: "512x512", type: "image/png" },
+                { src: iconDataURL, sizes: "192x192", type: "image/png" }
+            ]
+        };
+        
+        // Create blob URL for manifest
+        const manifestBlob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
+        const manifestURL = URL.createObjectURL(manifestBlob);
+        document.getElementById('manifestLink').href = manifestURL;
+        
+        // Also set apple touch icon
+        document.getElementById('appleTouchIcon').href = iconDataURL;
+        
+        resolve();
+    });
 }
+
+// Run on load and also after main content visible
+window.addEventListener('load', () => {
+    generateIconAndManifest().then(() => {
+        // Also register service worker to ensure manifest is served
+        if('serviceWorker' in navigator) {
+            // Just a dummy service worker to make PWA installable
+            navigator.serviceWorker.register('/sw.js').catch(() => {
+                // If sw.js not found, create a simple one dynamically
+                const swScript = `self.addEventListener('fetch', e => e.respondWith(fetch(e.request)));`;
+                const blob = new Blob([swScript], {type: 'application/javascript'});
+                navigator.serviceWorker.register(URL.createObjectURL(blob));
+            });
+        }
+    });
+});
 </script>
 </body>
 </html>
