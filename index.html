@@ -3,7 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅 | 🤖⏳ FREE Courses</title>
+    <title>𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</title>
+    <!-- PWA Manifest + Icons -->
+    <link rel="manifest" href="data:application/manifest+json,{
+      \"name\": \"Doraemon World\",
+      \"short_name\": \"Doraemon\",
+      \"start_url\": \".\",
+      \"display\": \"standalone\",
+      \"theme_color\": \"#0a1a3a\",
+      \"background_color\": \"#0a1a3a\",
+      \"icons\": [
+        {
+          \"src\": \"1000001644.jpg\",
+          \"sizes\": \"192x192\",
+          \"type\": \"image/jpeg\"
+        },
+        {
+          \"src\": \"1000001644.jpg\",
+          \"sizes\": \"512x512\",
+          \"type\": \"image/jpeg\"
+        }
+      ]
+    }">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Doraemon World">
+    <link rel="apple-touch-icon" href="1000001644.jpg">
+    <meta name="theme-color" content="#0a1a3a">
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,'Segoe UI',sans-serif;}
         body{background:linear-gradient(135deg,#0a1a3a 0%,#0f2a4a 100%);color:#e5e7eb;overflow-x:hidden;padding-bottom:150px;}
@@ -92,10 +118,10 @@
         <div class="glass-panel course-card" onclick="openPage('pageSSC')"><div class="course-card-content"><div class="circle-num" style="background:#10b981;color:#fff;width:3.5rem;height:3.5rem;font-size:1.6rem">🎯</div><div><h3 style="color:#fff;font-size:1.5rem">SSC COMPLETE PACKAGE</h3><span class="course-subtitle">COMPLETE BATCH</span></div></div><span class="arrow-right">❯</span></div>
         <div class="glass-panel course-card" onclick="openPage('pageSSCMocks')"><div class="course-card-content"><div class="circle-num" style="background:#f59e0b;color:#fff;width:3.5rem;height:3.5rem;font-size:1.6rem">📋</div><div><h3 style="color:#fff;font-size:1.5rem">Mocks</h3><span class="course-subtitle">PRACTICE TESTS</span></div></div><span class="arrow-right">❯</span></div>
         <a href="http://parmar4batch.edgeone.dev" target="_blank" class="glass-panel course-card"><div class="course-card-content"><div class="circle-num" style="background:#8b5cf6;color:#fff;width:3.5rem;height:3.5rem;font-size:1.6rem">📘</div><div><h3 style="color:#fff;font-size:1.5rem">PARMAR 4.0</h3><span class="course-subtitle">COMPLETE BATCH</span></div></div><span class="arrow-right">❯</span></a>
-        <!-- Selection Way remains direct link to its original site -->
         <a href="https://selectionway.edgeone.app" target="_blank" class="glass-panel course-card"><div class="course-card-content"><div class="circle-num" style="background:#f59e0b;color:#fff;width:3.5rem;height:3.5rem;font-size:1.6rem">🚀</div><div><h3 style="color:#fff;font-size:1.5rem">Selection Way</h3><span class="course-subtitle">LIVE & RECORDED COURSES</span></div></div><span class="arrow-right">❯</span></a>
-        <!-- NEW PW FOLDER - placed below Selection Way -->
         <a href="https://pwthor.live/study/batches" target="_blank" class="glass-panel course-card"><div class="course-card-content"><div class="circle-num" style="background:#8b5cf6;color:#fff;width:3.5rem;height:3.5rem;font-size:1.6rem">📁</div><div><h3 style="color:#fff;font-size:1.5rem">PW</h3><span class="course-subtitle">PHYSICS WALLAH BATCHES</span></div></div><span class="arrow-right">❯</span></a>
+        <!-- NEW RWA CARD -->
+        <a href="https://spidyuniverserwa.vercel.app/" target="_blank" class="glass-panel course-card"><div class="course-card-content"><div class="circle-num" style="background:#ef4444;color:#fff;width:3.5rem;height:3.5rem;font-size:1.6rem">📘</div><div><h3 style="color:#fff;font-size:1.5rem">RWA</h3><span class="course-subtitle">RWA ACADEMY</span></div></div><span class="arrow-right">❯</span></a>
     </div></div>
     
     <!-- Hidden pages (unused but kept for compatibility) -->
@@ -115,7 +141,7 @@
         <div class="course-card" onclick="openPage('pageSSCGS')"><div class="course-card-content"><div class="circle-num folder-icon">🌍</div><h3 style="color:#fff">GS</h3></div><span class="arrow-right">❯</span></div>
         <div class="course-card" onclick="openPage('pageSSCReasoning')"><div class="course-card-content"><div class="circle-num folder-icon">🧠</div><h3 style="color:#fff">Reasoning</h3></div><span class="arrow-right">❯</span></div>
     </div></div>
-    <!-- SSC subpages -->
+    <!-- SSC subpages (unchanged) -->
     <div id="pageSSCBatches" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>CWxSW</h2><div></div></div><div class="container"><input type="text" class="search-box" placeholder="🔍 Search courses..." onkeyup="filterItems(this, '.course-card')"><a href="https://selectionway.edgeone.app/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num" style="background:#8b5cf6;color:#fff">🚀</div><div><h3>Selection Way</h3><span class="course-subtitle">NEW BATCH</span></div></div><span class="arrow-right">❯</span></a><a href="https://sscpratham17.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num" style="background:#3b82f6;color:#fff">📘</div><div><h3>SSC Pratham 17</h3><span class="course-subtitle">BATCH</span></div></div><span class="arrow-right">❯</span></a></div></div>
     <div id="pageSSCMaths" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>Maths</h2><div></div></div><div class="container"><input type="text" class="search-box" placeholder="🔍 Search courses..." onkeyup="filterItems(this, '.course-card')"><a href="https://abhinaysirtg.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Abhinay Sir</h3><span class="course-subtitle">MATHS</span></div></div><span class="arrow-right">❯</span></a><a href="https://abhinaysirtopper.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Abhinay Sir Topper Batch</h3><span class="course-subtitle">MATHS</span></div></div><span class="arrow-right">❯</span></a><a href="https://rakeshsirmaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Rakesh Sir</h3><span class="course-subtitle">MATHS</span></div></div><span class="arrow-right">❯</span></a><a href="https://upsimaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>UP SI Maths</h3><span class="course-subtitle">MATHS</span></div></div><span class="arrow-right">❯</span></a><a href="https://gagansirmaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Gagan Sir</h3><span class="course-subtitle">MATHS</span></div></div><span class="arrow-right">❯</span></a>
     <a href="https://studyhelp.freesite.online/batches/bhutesh_math_reason.html" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">👨‍🏫</div><div><h3>Bhutesh Sir Maths</h3><span class="course-subtitle">MATH + REASONING (12 MONTHS)</span></div></div><span class="arrow-right">❯</span></a>
@@ -145,6 +171,12 @@ document.getElementById('notificationBell')?.addEventListener('click',()=>{let m
 let scrollBtn=document.getElementById('scrollTopBtn');window.addEventListener('scroll',()=>{window.scrollY>300?scrollBtn.classList.add('show'):scrollBtn.classList.remove('show')});scrollBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 function openPage(pageId){let pages=['pageDashboard','pageSSC','pageSSCMocks','pageSSCBatches','pageSSCMaths','pageSSCScience','pageSSCEnglish','pageSSCGS','pageSSCReasoning','pageSelectionWay','pageSSCMocksParmar','pageSSCMocksParmarBomb','pageSSCMocksAll','pageSSCMocksRRBNTPC','pageSSCMocksAman','pageVocabMasteryMain','pageEnglishMadhyamMocks','pageOliveboardReasoningMain','pageMixGSPYQsMain','pageMathsPracticeMain','pagePreSectionalMocksMain','pageMainsSectionalMocksMain','pageEdiquityTimingMock','pageAchieverMain','pageAchieverOnline','pageLecturesGrammar','pageLecturesPractice'];pages.forEach(id=>{let el=document.getElementById(id);if(el)el.classList.add('hidden')});document.getElementById(pageId).classList.remove('hidden');window.scrollTo(0,0);}
 function filterItems(input,selector){let filter=input.value.toLowerCase();document.querySelectorAll(selector).forEach(item=>{let text=item.innerText.toLowerCase();item.style.display=text.includes(filter)?'':'none'})}
+
+// Register service worker for PWA installability (basic)
+if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+    // fallback: create a simple service worker if not exists? but not needed for icon, manifest handles icon.
+}
 </script>
 </body>
 </html>
