@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</title>
     
-    <!-- PWA meta -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Doraemon World">
@@ -82,7 +81,8 @@
 <body>
 <div id="welcomeModal" class="modal-overlay">
     <div class="glass-panel modal-box">
-        <img src="1000001644.jpg" alt="Doraemon" class="doraemon-img" onerror="this.src='https://placehold.co/100x100?text=🤖'">
+        <!-- New image URL placed here -->
+        <img src="https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg" alt="Doraemon" class="doraemon-img" onerror="this.src='https://placehold.co/100x100?text=🤖'">
         <h2 class="title-gradient" style="animation:none;">𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</h2>
         <p class="subtitle">🔔 <strong>Mandatory:</strong> You must join our official <strong>WhatsApp Channel</strong> to access all free courses and updates.<br>⚠️ Beware of fake channels asking for money!</p>
         <div class="flex flex-col gap-3">
@@ -95,7 +95,10 @@
 <div id="mainContent" style="display:none;">
     <div class="notification-bar"><div class="left-placeholder"></div><a href="https://t.me/do2006rabot" target="_blank" class="contact-admin-link"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.13-.07-.18-.08-.05-.2-.03-.28-.01-.12.02-1.95 1.24-5.5 3.63-.52.36-.99.53-1.41.52-.46-.01-1.35-.26-2.01-.48-.81-.27-1.45-.42-1.4-.88.03-.25.38-.51.82-.78 1.49-.92 3.58-1.95 5.6-2.84 2.66-1.18 3.22-1.38 3.58-1.38.08 0 .26.02.38.12.1.08.13.19.14.28-.01.07-.05.44-.13 1.04z"/></svg>Contact Admin</a><div id="notificationBell" class="notification-bell">🔔<span class="badge" id="notiBadge">0</span></div></div>
     <!-- MAIN PAGE -->
-    <div id="pageDashboard"><div class="header-section text-center"><img src="1000001644.jpg" alt="Doraemon" class="doraemon-img" style="width:7rem;height:7rem" onerror="this.src='https://placehold.co/100x100?text=🤖'"><h1 class="title-gradient" style="font-size:2.4rem">𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</h1><p class="tagline">Time machine kharab hai, isliye yahan fash gaya hu 🤖⏳</p></div><div class="container"><h2 style="margin-bottom:1.5rem;font-size:1.4rem">📚 Available Courses</h2>
+    <div id="pageDashboard"><div class="header-section text-center"><!-- Updated image URL -->
+        <img src="https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg" alt="Doraemon" class="doraemon-img" style="width:7rem;height:7rem" onerror="this.src='https://placehold.co/100x100?text=🤖'">
+        <h1 class="title-gradient" style="font-size:2.4rem">𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</h1>
+        <p class="tagline">Time machine kharab hai, isliye yahan fash gaya hu 🤖⏳</p></div><div class="container"><h2 style="margin-bottom:1.5rem;font-size:1.4rem">📚 Available Courses</h2>
         <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" target="_blank" class="glass-panel course-card"><div class="course-card-content"><div class="circle-num" style="background:#3b82f6;color:#fff;width:3.5rem;height:3.5rem;font-size:1.6rem">📂</div><div><h3 style="color:#fff;font-size:1.5rem">ACHIEVER 8.0</h3><span class="course-subtitle">BY RANI MAM</span></div></div><span class="arrow-right">❯</span></a>
         <div class="glass-panel course-card" onclick="openPage('pageSSC')"><div class="course-card-content"><div class="circle-num" style="background:#10b981;color:#fff;width:3.5rem;height:3.5rem;font-size:1.6rem">🎯</div><div><h3 style="color:#fff;font-size:1.5rem">SSC COMPLETE PACKAGE</h3><span class="course-subtitle">COMPLETE BATCH</span></div></div><span class="arrow-right">❯</span></div>
         <div class="glass-panel course-card" onclick="openPage('pageSSCMocks')"><div class="course-card-content"><div class="circle-num" style="background:#f59e0b;color:#fff;width:3.5rem;height:3.5rem;font-size:1.6rem">📋</div><div><h3 style="color:#fff;font-size:1.5rem">Mocks</h3><span class="course-subtitle">PRACTICE TESTS</span></div></div><span class="arrow-right">❯</span></div>
@@ -115,7 +118,7 @@
         <div class="course-card" onclick="openPage('pageSSCGS')"><div class="course-card-content"><div class="circle-num folder-icon">🌍</div><h3 style="color:#fff">GS</h3></div><span class="arrow-right">❯</span></div>
         <div class="course-card" onclick="openPage('pageSSCReasoning')"><div class="course-card-content"><div class="circle-num folder-icon">🧠</div><h3 style="color:#fff">Reasoning</h3></div><span class="arrow-right">❯</span></div>
     </div></div>
-    <!-- SSC subpages (unchanged) -->
+    <!-- SSC subpages -->
     <div id="pageSSCBatches" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>CWxSW</h2><div></div></div><div class="container"><input type="text" class="search-box" placeholder="🔍 Search courses..." onkeyup="filterItems(this, '.course-card')"><a href="https://selectionway.edgeone.app/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num" style="background:#8b5cf6;color:#fff">🚀</div><div><h3>Selection Way</h3><span class="course-subtitle">NEW BATCH</span></div></div><span class="arrow-right">❯</span></a><a href="https://sscpratham17.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num" style="background:#3b82f6;color:#fff">📘</div><div><h3>SSC Pratham 17</h3><span class="course-subtitle">BATCH</span></div></div><span class="arrow-right">❯</span></a></div></div>
     <div id="pageSSCMaths" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>Maths</h2><div></div></div><div class="container"><input type="text" class="search-box" placeholder="🔍 Search courses..." onkeyup="filterItems(this, '.course-card')"><a href="https://abhinaysirtg.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Abhinay Sir</h3><span class="course-subtitle">MATHS</span></div></div><span class="arrow-right">❯</span></a><a href="https://abhinaysirtopper.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Abhinay Sir Topper Batch</h3><span class="course-subtitle">MATHS</span></div></div><span class="arrow-right">❯</span></a><a href="https://rakeshsirmaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Rakesh Sir</h3><span class="course-subtitle">MATHS</span></div></div><span class="arrow-right">❯</span></a><a href="https://upsimaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>UP SI Maths</h3><span class="course-subtitle">MATHS</span></div></div><span class="arrow-right">❯</span></a><a href="https://gagansirmaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Gagan Sir</h3><span class="course-subtitle">MATHS</span></div></div><span class="arrow-right">❯</span></a>
     <a href="https://studyhelp.freesite.online/batches/bhutesh_math_reason.html" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">👨‍🏫</div><div><h3>Bhutesh Sir Maths</h3><span class="course-subtitle">MATH + REASONING (12 MONTHS)</span></div></div><span class="arrow-right">❯</span></a>
@@ -146,8 +149,7 @@ let scrollBtn=document.getElementById('scrollTopBtn');window.addEventListener('s
 function openPage(pageId){let pages=['pageDashboard','pageSSC','pageSSCMocks','pageSSCBatches','pageSSCMaths','pageSSCScience','pageSSCEnglish','pageSSCGS','pageSSCReasoning','pageSSCMocksParmar','pageSSCMocksParmarBomb','pageSSCMocksAll','pageSSCMocksRRBNTPC','pageSSCMocksAman','pageVocabMasteryMain','pageEnglishMadhyamMocks','pageOliveboardReasoningMain','pageMixGSPYQsMain','pageMathsPracticeMain','pagePreSectionalMocksMain','pageMainsSectionalMocksMain','pageEdiquityTimingMock'];pages.forEach(id=>{let el=document.getElementById(id);if(el)el.classList.add('hidden')});document.getElementById(pageId).classList.remove('hidden');window.scrollTo(0,0);}
 function filterItems(input,selector){let filter=input.value.toLowerCase();document.querySelectorAll(selector).forEach(item=>{let text=item.innerText.toLowerCase();item.style.display=text.includes(filter)?'':'none'})}
 
-// ========== PWA ICON FIX ==========
-// Generate a perfect square 512x512 Doraemon-style icon using canvas
+// ========== PWA ICON FIX using Canvas (ensures square icon for home screen) ==========
 function generateIconAndManifest() {
     return new Promise((resolve) => {
         const canvas = document.createElement('canvas');
@@ -253,7 +255,6 @@ function generateIconAndManifest() {
         
         const iconDataURL = canvas.toDataURL('image/png');
         
-        // Create manifest JSON
         const manifest = {
             name: "Doraemon World",
             short_name: "Doraemon",
@@ -267,26 +268,18 @@ function generateIconAndManifest() {
             ]
         };
         
-        // Create blob URL for manifest
         const manifestBlob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
         const manifestURL = URL.createObjectURL(manifestBlob);
         document.getElementById('manifestLink').href = manifestURL;
-        
-        // Also set apple touch icon
         document.getElementById('appleTouchIcon').href = iconDataURL;
-        
         resolve();
     });
 }
 
-// Run on load and also after main content visible
 window.addEventListener('load', () => {
     generateIconAndManifest().then(() => {
-        // Also register service worker to ensure manifest is served
         if('serviceWorker' in navigator) {
-            // Just a dummy service worker to make PWA installable
             navigator.serviceWorker.register('/sw.js').catch(() => {
-                // If sw.js not found, create a simple one dynamically
                 const swScript = `self.addEventListener('fetch', e => e.respondWith(fetch(e.request)));`;
                 const blob = new Blob([swScript], {type: 'application/javascript'});
                 navigator.serviceWorker.register(URL.createObjectURL(blob));
