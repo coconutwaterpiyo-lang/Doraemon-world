@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</title>
     
+    <!-- PWA meta for install prompt -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Doraemon World">
     <meta name="theme-color" content="#0a1a3a">
-    <link rel="apple-touch-icon" href="#" id="appleTouchIcon">
+    <link rel="apple-touch-icon" href="https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg">
     <link rel="manifest" href="#" id="manifestLink">
     
     <style>
@@ -81,7 +82,6 @@
 <body>
 <div id="welcomeModal" class="modal-overlay">
     <div class="glass-panel modal-box">
-        <!-- New image URL placed here -->
         <img src="https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg" alt="Doraemon" class="doraemon-img" onerror="this.src='https://placehold.co/100x100?text=🤖'">
         <h2 class="title-gradient" style="animation:none;">𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</h2>
         <p class="subtitle">🔔 <strong>Mandatory:</strong> You must join our official <strong>WhatsApp Channel</strong> to access all free courses and updates.<br>⚠️ Beware of fake channels asking for money!</p>
@@ -95,7 +95,7 @@
 <div id="mainContent" style="display:none;">
     <div class="notification-bar"><div class="left-placeholder"></div><a href="https://t.me/do2006rabot" target="_blank" class="contact-admin-link"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.13-.07-.18-.08-.05-.2-.03-.28-.01-.12.02-1.95 1.24-5.5 3.63-.52.36-.99.53-1.41.52-.46-.01-1.35-.26-2.01-.48-.81-.27-1.45-.42-1.4-.88.03-.25.38-.51.82-.78 1.49-.92 3.58-1.95 5.6-2.84 2.66-1.18 3.22-1.38 3.58-1.38.08 0 .26.02.38.12.1.08.13.19.14.28-.01.07-.05.44-.13 1.04z"/></svg>Contact Admin</a><div id="notificationBell" class="notification-bell">🔔<span class="badge" id="notiBadge">0</span></div></div>
     <!-- MAIN PAGE -->
-    <div id="pageDashboard"><div class="header-section text-center"><!-- Updated image URL -->
+    <div id="pageDashboard"><div class="header-section text-center">
         <img src="https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg" alt="Doraemon" class="doraemon-img" style="width:7rem;height:7rem" onerror="this.src='https://placehold.co/100x100?text=🤖'">
         <h1 class="title-gradient" style="font-size:2.4rem">𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</h1>
         <p class="tagline">Time machine kharab hai, isliye yahan fash gaya hu 🤖⏳</p></div><div class="container"><h2 style="margin-bottom:1.5rem;font-size:1.4rem">📚 Available Courses</h2>
@@ -149,143 +149,42 @@ let scrollBtn=document.getElementById('scrollTopBtn');window.addEventListener('s
 function openPage(pageId){let pages=['pageDashboard','pageSSC','pageSSCMocks','pageSSCBatches','pageSSCMaths','pageSSCScience','pageSSCEnglish','pageSSCGS','pageSSCReasoning','pageSSCMocksParmar','pageSSCMocksParmarBomb','pageSSCMocksAll','pageSSCMocksRRBNTPC','pageSSCMocksAman','pageVocabMasteryMain','pageEnglishMadhyamMocks','pageOliveboardReasoningMain','pageMixGSPYQsMain','pageMathsPracticeMain','pagePreSectionalMocksMain','pageMainsSectionalMocksMain','pageEdiquityTimingMock'];pages.forEach(id=>{let el=document.getElementById(id);if(el)el.classList.add('hidden')});document.getElementById(pageId).classList.remove('hidden');window.scrollTo(0,0);}
 function filterItems(input,selector){let filter=input.value.toLowerCase();document.querySelectorAll(selector).forEach(item=>{let text=item.innerText.toLowerCase();item.style.display=text.includes(filter)?'':'none'})}
 
-// ========== PWA ICON FIX using Canvas (ensures square icon for home screen) ==========
-function generateIconAndManifest() {
-    return new Promise((resolve) => {
-        const canvas = document.createElement('canvas');
-        canvas.width = 512;
-        canvas.height = 512;
-        const ctx = canvas.getContext('2d');
-        
-        // Background circle (Doraemon blue)
-        ctx.beginPath();
-        ctx.arc(256, 256, 240, 0, 2 * Math.PI);
-        ctx.fillStyle = '#1E88E5';
-        ctx.fill();
-        ctx.strokeStyle = '#0D47A1';
-        ctx.lineWidth = 12;
-        ctx.stroke();
-        
-        // White face oval
-        ctx.beginPath();
-        ctx.ellipse(256, 280, 180, 160, 0, 0, 2 * Math.PI);
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fill();
-        ctx.strokeStyle = '#BBDEFB';
-        ctx.lineWidth = 4;
-        ctx.stroke();
-        
-        // Eyes
-        ctx.beginPath();
-        ctx.arc(190, 220, 28, 0, 2 * Math.PI);
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fill();
-        ctx.strokeStyle = '#000';
-        ctx.lineWidth = 3;
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.arc(322, 220, 28, 0, 2 * Math.PI);
-        ctx.fill();
-        ctx.stroke();
-        
-        // Pupils
-        ctx.fillStyle = '#000000';
-        ctx.beginPath();
-        ctx.arc(190, 220, 14, 0, 2 * Math.PI);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(322, 220, 14, 0, 2 * Math.PI);
-        ctx.fill();
-        
-        // Eye highlights
-        ctx.fillStyle = '#FFFFFF';
-        ctx.beginPath();
-        ctx.arc(180, 210, 6, 0, 2 * Math.PI);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(312, 210, 6, 0, 2 * Math.PI);
-        ctx.fill();
-        
-        // Nose (red)
-        ctx.beginPath();
-        ctx.arc(256, 260, 22, 0, 2 * Math.PI);
-        ctx.fillStyle = '#E53935';
-        ctx.fill();
-        ctx.fillStyle = '#FFFFFF';
-        ctx.beginPath();
-        ctx.arc(248, 252, 5, 0, 2 * Math.PI);
-        ctx.fill();
-        
-        // Mouth (big smile)
-        ctx.beginPath();
-        ctx.arc(256, 300, 70, 0.1, Math.PI - 0.1);
-        ctx.strokeStyle = '#000';
-        ctx.lineWidth = 6;
-        ctx.stroke();
-        
-        // Whiskers
-        ctx.beginPath();
-        ctx.moveTo(120, 240);
-        ctx.lineTo(60, 220);
-        ctx.moveTo(120, 260);
-        ctx.lineTo(55, 260);
-        ctx.moveTo(120, 280);
-        ctx.lineTo(60, 300);
-        ctx.moveTo(392, 240);
-        ctx.lineTo(452, 220);
-        ctx.moveTo(392, 260);
-        ctx.lineTo(457, 260);
-        ctx.moveTo(392, 280);
-        ctx.lineTo(452, 300);
-        ctx.lineWidth = 5;
-        ctx.stroke();
-        
-        // Bell (yellow)
-        ctx.beginPath();
-        ctx.ellipse(256, 400, 35, 45, 0, 0, 2 * Math.PI);
-        ctx.fillStyle = '#FDD835';
-        ctx.fill();
-        ctx.fillStyle = '#F9A825';
-        ctx.beginPath();
-        ctx.ellipse(256, 415, 20, 12, 0, 0, 2 * Math.PI);
-        ctx.fill();
-        ctx.fillStyle = '#000';
-        ctx.font = 'bold 50px "Segoe UI"';
-        ctx.fillText("🔔", 238, 418);
-        
-        const iconDataURL = canvas.toDataURL('image/png');
-        
-        const manifest = {
-            name: "Doraemon World",
-            short_name: "Doraemon",
-            start_url: "/",
-            display: "standalone",
-            theme_color: "#0a1a3a",
-            background_color: "#0a1a3a",
-            icons: [
-                { src: iconDataURL, sizes: "512x512", type: "image/png" },
-                { src: iconDataURL, sizes: "192x192", type: "image/png" }
-            ]
-        };
-        
-        const manifestBlob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
-        const manifestURL = URL.createObjectURL(manifestBlob);
-        document.getElementById('manifestLink').href = manifestURL;
-        document.getElementById('appleTouchIcon').href = iconDataURL;
-        resolve();
-    });
+// Create manifest dynamically with the user's provided image URL and exact name
+function createManifest() {
+    const manifest = {
+        name: "𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅",
+        short_name: "Doraemon",
+        start_url: "/",
+        display: "standalone",
+        theme_color: "#0a1a3a",
+        background_color: "#0a1a3a",
+        icons: [
+            {
+                src: "https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg",
+                sizes: "192x192",
+                type: "image/jpeg"
+            },
+            {
+                src: "https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg",
+                sizes: "512x512",
+                type: "image/jpeg"
+            }
+        ]
+    };
+    const manifestBlob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
+    const manifestURL = URL.createObjectURL(manifestBlob);
+    document.getElementById('manifestLink').href = manifestURL;
 }
 
 window.addEventListener('load', () => {
-    generateIconAndManifest().then(() => {
-        if('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js').catch(() => {
-                const swScript = `self.addEventListener('fetch', e => e.respondWith(fetch(e.request)));`;
-                const blob = new Blob([swScript], {type: 'application/javascript'});
-                navigator.serviceWorker.register(URL.createObjectURL(blob));
-            });
-        }
-    });
+    createManifest();
+    if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(() => {
+            const swScript = `self.addEventListener('fetch', e => e.respondWith(fetch(e.request)));`;
+            const blob = new Blob([swScript], {type: 'application/javascript'});
+            navigator.serviceWorker.register(URL.createObjectURL(blob));
+        });
+    }
 });
 </script>
 </body>
