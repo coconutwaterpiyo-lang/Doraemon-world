@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</title>
     
-    <!-- PWA meta for install prompt -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Doraemon World">
@@ -62,11 +61,9 @@
         .scroll-top{position:fixed;bottom:90px;right:20px;background:#3b82f6;color:#fff;border-radius:50%;width:45px;height:45px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transition:.3s;z-index:99;font-size:24px;}
         .scroll-top.show{opacity:1;visibility:visible;}
         .scroll-top:hover{background:#2563eb;transform:scale(1.1);}
-        .mock-direct-link{display:block;text-align:center;background:linear-gradient(135deg,#3b82f6,#8b5cf6);padding:1rem 2rem;border-radius:3rem;font-size:1.3rem;font-weight:bold;color:#fff;box-shadow:0 8px 20px rgba(59,130,246,.5);transition:.2s;margin:2rem auto;max-width:300px;}
-        .mock-direct-link:hover{transform:scale(1.02);background:linear-gradient(135deg,#2563eb,#7c3aed);}
         .circle-num{width:3rem;height:3rem;border-radius:50%;background:rgba(59,130,246,.2);color:#3b82f6;font-weight:700;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
         .folder-icon{background:rgba(139,92,246,.2)!important;color:#8b5cf6!important;}
-        @media (max-width:550px){.title-gradient{font-size:1.6rem;}.footer-btn{padding:.7rem .5rem;gap:8px;font-size:.85rem;}.footer-btn svg{width:18px;height:18px;}.back-btn{padding:.3rem .8rem;font-size:.8rem;}.scroll-top{bottom:80px;right:15px;width:40px;height:40px;font-size:20px;}.mock-direct-link{font-size:1rem;padding:.75rem 1.5rem;max-width:250px;}.arrow-right{font-size:1.3rem;}.circle-num{width:2.5rem;height:2.5rem;font-size:1rem;}}
+        @media (max-width:550px){.title-gradient{font-size:1.6rem;}.footer-btn{padding:.7rem .5rem;gap:8px;font-size:.85rem;}.footer-btn svg{width:18px;height:18px;}.back-btn{padding:.3rem .8rem;font-size:.8rem;}.scroll-top{bottom:80px;right:15px;width:40px;height:40px;font-size:20px;}.arrow-right{font-size:1.3rem;}.circle-num{width:2.5rem;height:2.5rem;font-size:1rem;}}
     </style>
 </head>
 <body>
@@ -83,9 +80,13 @@
     </div>
 </div>
 <div id="mainContent" style="display:none;">
-    <div class="notification-bar"><div class="left-placeholder"></div><a href="https://t.me/do2006rabot" target="_blank" class="contact-admin-link"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.13-.07-.18-.08-.05-.2-.03-.28-.01-.12.02-1.95 1.24-5.5 3.63-.52.36-.99.53-1.41.52-.46-.01-1.35-.26-2.01-.48-.81-.27-1.45-.42-1.4-.88.03-.25.38-.51.82-.78 1.49-.92 3.58-1.95 5.6-2.84 2.66-1.18 3.22-1.38 3.58-1.38.08 0 .26.02.38.12.1.08.13.19.14.28-.01.07-.05.44-.13 1.04z"/></svg>Contact Admin</a><div id="notificationBell" class="notification-bell">🔔<span class="badge" id="notiBadge">0</span></div></div>
+    <div class="notification-bar">
+        <div class="left-placeholder"></div>
+        <a href="https://t.me/do2006rabot" target="_blank" class="contact-admin-link"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.13-.07-.18-.08-.05-.2-.03-.28-.01-.12.02-1.95 1.24-5.5 3.63-.52.36-.99.53-1.41.52-.46-.01-1.35-.26-2.01-.48-.81-.27-1.45-.42-1.4-.88.03-.25.38-.51.82-.78 1.49-.92 3.58-1.95 5.6-2.84 2.66-1.18 3.22-1.38 3.58-1.38.08 0 .26.02.38.12.1.08.13.19.14.28-.01.07-.05.44-.13 1.04z"/></svg>Contact Admin</a>
+        <div id="notificationBell" class="notification-bell">🔔<span class="badge" id="notiBadge">0</span></div>
+    </div>
     
-    <!-- DASHBOARD - sab center me -->
+    <!-- DASHBOARD -->
     <div id="pageDashboard">
         <div class="header-section text-center">
             <img src="https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg" alt="Doraemon" class="doraemon-img" style="width:7rem;height:7rem;margin:0 auto;" onerror="this.src='https://placehold.co/100x100?text=🤖'">
@@ -95,52 +96,32 @@
         <div class="container">
             <h2 style="margin-bottom:1.5rem;font-size:1.4rem;text-align:center;">📚 Available Courses</h2>
             <a href="https://t.me/ranimam8free" target="_blank" class="glass-panel course-card">
-                <div class="course-card-content">
-                    <div class="circle-num" style="background:#3b82f6;color:#fff;">📂</div>
-                    <div><h3 style="color:#fff;font-size:1.5rem">ACHIEVER 8.0</h3><span class="course-subtitle">BY RANI MAM</span></div>
-                </div>
+                <div class="course-card-content"><div class="circle-num" style="background:#3b82f6;color:#fff;">📂</div><div><h3 style="color:#fff;font-size:1.5rem">ACHIEVER 8.0</h3><span class="course-subtitle">BY RANI MAM</span></div></div>
                 <span class="arrow-right">❯</span>
             </a>
             <div class="glass-panel course-card" onclick="openPage('pageSSC')">
-                <div class="course-card-content">
-                    <div class="circle-num" style="background:#10b981;color:#fff;">🎯</div>
-                    <div><h3 style="color:#fff;font-size:1.5rem">SSC COMPLETE PACKAGE</h3><span class="course-subtitle">COMPLETE BATCH</span></div>
-                </div>
+                <div class="course-card-content"><div class="circle-num" style="background:#10b981;color:#fff;">🎯</div><div><h3 style="color:#fff;font-size:1.5rem">SSC COMPLETE PACKAGE</h3><span class="course-subtitle">COMPLETE BATCH</span></div></div>
                 <span class="arrow-right">❯</span>
             </div>
-            <div class="glass-panel course-card" onclick="openPage('pageSSCMocks')">
-                <div class="course-card-content">
-                    <div class="circle-num" style="background:#f59e0b;color:#fff;">📋</div>
-                    <div><h3 style="color:#fff;font-size:1.5rem">Mocks</h3><span class="course-subtitle">PRACTICE TESTS</span></div>
-                </div>
+            <!-- MOCKS - direct redirect, no extra folder -->
+            <a href="https://tgdoraemonmocks.edgeone.dev/" target="_blank" class="glass-panel course-card">
+                <div class="course-card-content"><div class="circle-num" style="background:#f59e0b;color:#fff;">📋</div><div><h3 style="color:#fff;font-size:1.5rem">Mocks</h3><span class="course-subtitle">PRACTICE TESTS</span></div></div>
                 <span class="arrow-right">❯</span>
-            </div>
+            </a>
             <a href="http://parmar4batch.edgeone.dev" target="_blank" class="glass-panel course-card">
-                <div class="course-card-content">
-                    <div class="circle-num" style="background:#8b5cf6;color:#fff;">📘</div>
-                    <div><h3 style="color:#fff;font-size:1.5rem">PARMAR 4.0</h3><span class="course-subtitle">COMPLETE BATCH</span></div>
-                </div>
+                <div class="course-card-content"><div class="circle-num" style="background:#8b5cf6;color:#fff;">📘</div><div><h3 style="color:#fff;font-size:1.5rem">PARMAR 4.0</h3><span class="course-subtitle">COMPLETE BATCH</span></div></div>
                 <span class="arrow-right">❯</span>
             </a>
             <a href="https://selectionway.edgeone.app" target="_blank" class="glass-panel course-card">
-                <div class="course-card-content">
-                    <div class="circle-num" style="background:#f59e0b;color:#fff;">🚀</div>
-                    <div><h3 style="color:#fff;font-size:1.5rem">Selection Way</h3><span class="course-subtitle">LIVE & RECORDED COURSES</span></div>
-                </div>
+                <div class="course-card-content"><div class="circle-num" style="background:#f59e0b;color:#fff;">🚀</div><div><h3 style="color:#fff;font-size:1.5rem">Selection Way</h3><span class="course-subtitle">LIVE & RECORDED COURSES</span></div></div>
                 <span class="arrow-right">❯</span>
             </a>
             <a href="https://pwthor.live/study/batches" target="_blank" class="glass-panel course-card">
-                <div class="course-card-content">
-                    <div class="circle-num" style="background:#8b5cf6;color:#fff;">📁</div>
-                    <div><h3 style="color:#fff;font-size:1.5rem">PW</h3><span class="course-subtitle">PHYSICS WALLAH BATCHES</span></div>
-                </div>
+                <div class="course-card-content"><div class="circle-num" style="background:#8b5cf6;color:#fff;">📁</div><div><h3 style="color:#fff;font-size:1.5rem">PW</h3><span class="course-subtitle">PHYSICS WALLAH BATCHES</span></div></div>
                 <span class="arrow-right">❯</span>
             </a>
             <a href="https://spidyuniverserwa.vercel.app/" target="_blank" class="glass-panel course-card">
-                <div class="course-card-content">
-                    <div class="circle-num" style="background:#ef4444;color:#fff;">📘</div>
-                    <div><h3 style="color:#fff;font-size:1.5rem">RWA</h3><span class="course-subtitle">RWA ACADEMY</span></div>
-                </div>
+                <div class="course-card-content"><div class="circle-num" style="background:#ef4444;color:#fff;">📘</div><div><h3 style="color:#fff;font-size:1.5rem">RWA</h3><span class="course-subtitle">RWA ACADEMY</span></div></div>
                 <span class="arrow-right">❯</span>
             </a>
         </div>
@@ -148,88 +129,26 @@
     
     <!-- SSC COMPLETE PAGE -->
     <div id="pageSSC" class="hidden">
-        <div class="glass-panel top-bar">
-            <button onclick="openPage('pageDashboard')" class="back-btn">← Back</button>
-            <h2>SSC COMPLETE</h2>
-            <div style="width:40px"></div>
-        </div>
+        <div class="glass-panel top-bar"><button onclick="openPage('pageDashboard')" class="back-btn">← Back</button><h2>SSC COMPLETE</h2><div style="width:40px"></div></div>
         <div class="container">
             <input type="text" class="search-box" placeholder="🔍 Search folders..." onkeyup="filterItems(this, '.course-card')" id="sscSearch">
-            <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" target="_blank" class="course-card">
-                <div class="course-card-content"><div class="circle-num folder-icon">📦</div><h3 style="color:#fff">Complete</h3></div>
-                <span class="arrow-right">❯</span>
-            </a>
-            <div class="course-card" onclick="openPage('pageSSCBatches')">
-                <div class="course-card-content"><div class="circle-num folder-icon">📦</div><h3 style="color:#fff">CWxSW</h3></div>
-                <span class="arrow-right">❯</span>
-            </div>
-            <div class="course-card" onclick="openPage('pageSSCMaths')">
-                <div class="course-card-content"><div class="circle-num folder-icon">📐</div><h3 style="color:#fff">Maths</h3></div>
-                <span class="arrow-right">❯</span>
-            </div>
-            <div class="course-card" onclick="openPage('pageSSCScience')">
-                <div class="course-card-content"><div class="circle-num folder-icon">🔬</div><h3 style="color:#fff">Science</h3></div>
-                <span class="arrow-right">❯</span>
-            </div>
-            <div class="course-card" onclick="openPage('pageSSCEnglish')">
-                <div class="course-card-content"><div class="circle-num folder-icon">📖</div><h3 style="color:#fff">English</h3></div>
-                <span class="arrow-right">❯</span>
-            </div>
-            <div class="course-card" onclick="openPage('pageSSCGS')">
-                <div class="course-card-content"><div class="circle-num folder-icon">🌍</div><h3 style="color:#fff">GS</h3></div>
-                <span class="arrow-right">❯</span>
-            </div>
-            <div class="course-card" onclick="openPage('pageSSCReasoning')">
-                <div class="course-card-content"><div class="circle-num folder-icon">🧠</div><h3 style="color:#fff">Reasoning</h3></div>
-                <span class="arrow-right">❯</span>
-            </div>
+            <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num folder-icon">📦</div><h3 style="color:#fff">Complete</h3></div><span class="arrow-right">❯</span></a>
+            <div class="course-card" onclick="openPage('pageSSCBatches')"><div class="course-card-content"><div class="circle-num folder-icon">📦</div><h3 style="color:#fff">CWxSW</h3></div><span class="arrow-right">❯</span></div>
+            <div class="course-card" onclick="openPage('pageSSCMaths')"><div class="course-card-content"><div class="circle-num folder-icon">📐</div><h3 style="color:#fff">Maths</h3></div><span class="arrow-right">❯</span></div>
+            <div class="course-card" onclick="openPage('pageSSCScience')"><div class="course-card-content"><div class="circle-num folder-icon">🔬</div><h3 style="color:#fff">Science</h3></div><span class="arrow-right">❯</span></div>
+            <div class="course-card" onclick="openPage('pageSSCEnglish')"><div class="course-card-content"><div class="circle-num folder-icon">📖</div><h3 style="color:#fff">English</h3></div><span class="arrow-right">❯</span></div>
+            <div class="course-card" onclick="openPage('pageSSCGS')"><div class="course-card-content"><div class="circle-num folder-icon">🌍</div><h3 style="color:#fff">GS</h3></div><span class="arrow-right">❯</span></div>
+            <div class="course-card" onclick="openPage('pageSSCReasoning')"><div class="course-card-content"><div class="circle-num folder-icon">🧠</div><h3 style="color:#fff">Reasoning</h3></div><span class="arrow-right">❯</span></div>
         </div>
     </div>
     
     <!-- SSC Subpages -->
-    <div id="pageSSCBatches" class="hidden">
-        <div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>CWxSW</h2><div></div></div>
-        <div class="container">
-            <a href="https://selectionway.edgeone.app/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">🚀</div><div><h3>Selection Way</h3><span class="course-subtitle">NEW BATCH</span></div></div><span class="arrow-right">❯</span></a>
-            <a href="https://sscpratham17.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📘</div><div><h3>SSC Pratham 17</h3><span class="course-subtitle">BATCH</span></div></div><span class="arrow-right">❯</span></a>
-        </div>
-    </div>
-    <div id="pageSSCMaths" class="hidden">
-        <div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>Maths</h2><div></div></div>
-        <div class="container">
-            <a href="https://abhinaysirtg.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Abhinay Sir</h3></div></div><span class="arrow-right">❯</span></a>
-            <a href="https://abhinaysirtopper.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Abhinay Sir Topper</h3></div></div><span class="arrow-right">❯</span></a>
-            <a href="https://rakeshsirmaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Rakesh Sir</h3></div></div><span class="arrow-right">❯</span></a>
-            <a href="https://gagansirmaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Gagan Sir</h3></div></div><span class="arrow-right">❯</span></a>
-        </div>
-    </div>
-    <div id="pageSSCScience" class="hidden">
-        <div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>Science</h2><div></div></div>
-        <div class="container"><div class="glass-panel" style="padding:2rem;text-align:center"><p>✨ More content coming soon! ✨</p></div></div>
-    </div>
-    <div id="pageSSCEnglish" class="hidden">
-        <div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>English</h2><div></div></div>
-        <div class="container">
-            <a href="https://neetumam68.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📖</div><div><h3>Neet Mam</h3></div></div><span class="arrow-right">❯</span></a>
-            <a href="https://jaydeepsirenglish.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📖</div><div><h3>Jaydeep Sir</h3></div></div><span class="arrow-right">❯</span></a>
-        </div>
-    </div>
-    <div id="pageSSCGS" class="hidden">
-        <div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>GS</h2><div></div></div>
-        <div class="container"><div class="glass-panel" style="padding:2rem;text-align:center"><p>✨ More content coming soon! ✨</p></div></div>
-    </div>
-    <div id="pageSSCReasoning" class="hidden">
-        <div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>Reasoning</h2><div></div></div>
-        <div class="container"><a href="https://piyushsirreasoning.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">🧠</div><div><h3>Piyush Sir</h3></div></div><span class="arrow-right">❯</span></a></div>
-    </div>
-    
-    <!-- MOCKS PAGE -->
-    <div id="pageSSCMocks" class="hidden">
-        <div class="glass-panel top-bar"><button onclick="openPage('pageDashboard')" class="back-btn">← Back</button><h2>Mocks</h2><div></div></div>
-        <div class="container">
-            <a href="https://tgdoraemonmocks.edgeone.dev/" target="_blank" class="mock-direct-link">📋 Go to Mock Tests →</a>
-        </div>
-    </div>
+    <div id="pageSSCBatches" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>CWxSW</h2><div></div></div><div class="container"><a href="https://selectionway.edgeone.app/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">🚀</div><div><h3>Selection Way</h3><span class="course-subtitle">NEW BATCH</span></div></div><span class="arrow-right">❯</span></a><a href="https://sscpratham17.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📘</div><div><h3>SSC Pratham 17</h3><span class="course-subtitle">BATCH</span></div></div><span class="arrow-right">❯</span></a></div></div>
+    <div id="pageSSCMaths" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>Maths</h2><div></div></div><div class="container"><a href="https://abhinaysirtg.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Abhinay Sir</h3></div></div><span class="arrow-right">❯</span></a><a href="https://abhinaysirtopper.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Abhinay Sir Topper</h3></div></div><span class="arrow-right">❯</span></a><a href="https://rakeshsirmaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Rakesh Sir</h3></div></div><span class="arrow-right">❯</span></a><a href="https://gagansirmaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Gagan Sir</h3></div></div><span class="arrow-right">❯</span></a></div></div>
+    <div id="pageSSCScience" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>Science</h2><div></div></div><div class="container"><div class="glass-panel" style="padding:2rem;text-align:center"><p>✨ More content coming soon! ✨</p></div></div></div>
+    <div id="pageSSCEnglish" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>English</h2><div></div></div><div class="container"><a href="https://neetumam68.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📖</div><div><h3>Neet Mam</h3></div></div><span class="arrow-right">❯</span></a><a href="https://jaydeepsirenglish.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📖</div><div><h3>Jaydeep Sir</h3></div></div><span class="arrow-right">❯</span></a></div></div>
+    <div id="pageSSCGS" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>GS</h2><div></div></div><div class="container"><div class="glass-panel" style="padding:2rem;text-align:center"><p>✨ More content coming soon! ✨</p></div></div></div>
+    <div id="pageSSCReasoning" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>Reasoning</h2><div></div></div><div class="container"><a href="https://piyushsirreasoning.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">🧠</div><div><h3>Piyush Sir</h3></div></div><span class="arrow-right">❯</span></a></div></div>
     
     <!-- FOOTER -->
     <div class="footer-fixed">
@@ -261,7 +180,7 @@ scrollBtn.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
 
 // Page navigation
 function openPage(pageId){
-    let pages=['pageDashboard','pageSSC','pageSSCMocks','pageSSCBatches','pageSSCMaths','pageSSCScience','pageSSCEnglish','pageSSCGS','pageSSCReasoning'];
+    let pages=['pageDashboard','pageSSC','pageSSCBatches','pageSSCMaths','pageSSCScience','pageSSCEnglish','pageSSCGS','pageSSCReasoning'];
     pages.forEach(id=>{let el=document.getElementById(id);if(el)el.classList.add('hidden')});
     document.getElementById(pageId).classList.remove('hidden');
     window.scrollTo(0,0);
