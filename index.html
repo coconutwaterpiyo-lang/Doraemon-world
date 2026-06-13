@@ -118,7 +118,16 @@
         </div>
     </div>
     
-    <div id="pageSSCBatches" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>CWxSW</h2><div></div></div><div class="container"><a href="https://selectionway.edgeone.app/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">🚀</div><div><h3>Selection Way</h3><span class="course-subtitle">NEW BATCH</span></div></div><span class="arrow-right">❯</span></a><a href="https://sscpratham17.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📘</div><div><h3>SSC Pratham 17</h3><span class="course-subtitle">BATCH</span></div></div><span class="arrow-right">❯</span></a></div></div>
+    <!-- CWxSW folder - Pratham link updated -->
+    <div id="pageSSCBatches" class="hidden">
+        <div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>CWxSW</h2><div></div></div>
+        <div class="container">
+            <a href="https://selectionway.edgeone.app/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">🚀</div><div><h3>Selection Way</h3><span class="course-subtitle">NEW BATCH</span></div></div><span class="arrow-right">❯</span></a>
+            <!-- Pratham link changed to new URL -->
+            <a href="https://sscpratham02.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📘</div><div><h3>SSC Pratham 02</h3><span class="course-subtitle">BATCH</span></div></div><span class="arrow-right">❯</span></a>
+        </div>
+    </div>
+    
     <div id="pageSSCMaths" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>Maths</h2><div></div></div><div class="container"><a href="https://abhinaysirtg.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Abhinay Sir</h3></div></div><span class="arrow-right">❯</span></a><a href="https://abhinaysirtopper.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Abhinay Sir Topper</h3></div></div><span class="arrow-right">❯</span></a><a href="https://rakeshsirmaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Rakesh Sir</h3></div></div><span class="arrow-right">❯</span></a><a href="https://gagansirmaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Gagan Sir</h3></div></div><span class="arrow-right">❯</span></a></div></div>
     <div id="pageSSCScience" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>Science</h2><div></div></div><div class="container"><div class="glass-panel" style="padding:2rem;text-align:center"><p>✨ More content coming soon! ✨</p></div></div></div>
     <div id="pageSSCEnglish" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>English</h2><div></div></div><div class="container"><a href="https://neetumam68.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📖</div><div><h3>Neet Mam</h3></div></div><span class="arrow-right">❯</span></a><a href="https://jaydeepsirenglish.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📖</div><div><h3>Jaydeep Sir</h3></div></div><span class="arrow-right">❯</span></a></div></div>
@@ -133,19 +142,19 @@
 
 <script>
 (function(){
-    let modal=document.getElementById('welcomeModal'), main=document.getElementById('mainContent');
+    var modal=document.getElementById('welcomeModal'), main=document.getElementById('mainContent');
     document.getElementById('joinWhatsAppBtn').onclick=function(){modal.style.display='none';main.style.display='block'};
     document.getElementById('alreadyJoinedBtn').onclick=function(){modal.style.display='none';main.style.display='block'};
 })();
 
 document.getElementById('notificationBell')?.addEventListener('click',function(){
-    let m=document.createElement('div');
+    var m=document.createElement('div');
     m.className='modal-overlay';
     m.innerHTML='<div class="glass-panel modal-box"><h3 style="color:#fff;margin-bottom:15px;">🔔 Notifications</h3><p>No new notifications at the moment.</p><button class="btn btn-dark" style="margin-top:20px;" onclick="this.parentElement.parentElement.remove()">Close</button></div>';
     document.body.appendChild(m);
 });
 
-let scrollBtn=document.getElementById('scrollTopBtn');
+var scrollBtn=document.getElementById('scrollTopBtn');
 window.addEventListener('scroll',function(){window.scrollY>300?scrollBtn.classList.add('show'):scrollBtn.classList.remove('show')});
 scrollBtn.onclick=function(){window.scrollTo({top:0,behavior:'smooth'})};
 
