@@ -1,201 +1,374 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</title>
-    
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Doraemon World">
-    <meta name="theme-color" content="#3b82f6">
-    <link rel="apple-touch-icon" href="https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg">
-    
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,'Segoe UI',sans-serif;}
-        body{background:linear-gradient(180deg,#eff6ff 0%,#ffffff 60%);color:#1e293b;overflow-x:hidden;padding-bottom:150px;}
-        a,a:hover,a:focus{text-decoration:none!important;}
-        .hidden{display:none!important;}
-        .glass-panel{background:#ffffff;border:1px solid #bfdbfe;border-radius:1.5rem;box-shadow:0 4px 16px rgba(59,130,246,.08);transition:.25s ease;}
-        .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(30,58,138,.45);z-index:10000;display:flex;align-items:center;justify-content:center;}
-        .modal-box{max-width:28rem;width:90%;padding:2rem 1.5rem;box-shadow:0 10px 40px rgba(59,130,246,.25);border-radius:2rem;background:#ffffff;border:1px solid #bfdbfe;text-align:center;}
-        .doraemon-img{width:6.5rem;height:6.5rem;object-fit:cover;border-radius:50%;border:3px solid #3b82f6;box-shadow:0 0 20px rgba(59,130,246,.35);margin:0 auto 1rem;display:block;background:#fff;}
-        .title-gradient{font-size:2rem;font-weight:800;background:linear-gradient(135deg,#3b82f6,#60a5fa,#1d4ed8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem;display:inline-block;}
-        .subtitle{color:#64748b;font-size:.9rem;margin-bottom:1.5rem;line-height:1.4;}
-        .tagline{color:#64748b;font-size:.95rem;font-weight:500;font-style:italic;}
-        .btn{padding:.75rem 1rem;border-radius:1rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border:none;transition:.2s;font-size:.9rem;}
-        .btn-blue{background:linear-gradient(95deg,#3b82f6,#2563eb);color:#fff;box-shadow:0 4px 12px rgba(59,130,246,.35);}
-        .btn-blue:hover{background:linear-gradient(95deg,#2563eb,#1d4ed8);transform:scale(.98);}
-        .btn-dark{background:#ffffff;color:#1e293b;border:1px solid #bfdbfe;}
-        .btn-dark:hover{background:#eff6ff;border-color:#3b82f6;}
-        .notification-bar{background:#ffffff;padding:8px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2eefd;}
-        .left-placeholder{width:40px;visibility:hidden;}
-        .contact-admin-link{background:#eff6ff;border-radius:40px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:500;color:#1d4ed8;border:1px solid #bfdbfe;transition:.2s;}
-        .contact-admin-link svg{width:18px;height:18px;fill:#1d4ed8;transition:.2s;}
-        .contact-admin-link:hover{background:#3b82f6;color:#fff;transform:scale(1.02);}
-        .contact-admin-link:hover svg{fill:#fff;}
-        .notification-bell{background:#eff6ff;border-radius:40px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:.2s;font-size:1.3rem;color:#1d4ed8;border:1px solid #bfdbfe;position:relative;}
-        .notification-bell:hover{background:#3b82f6;transform:scale(1.05);}
-        .badge{position:absolute;top:-5px;right:-5px;background:#ef4444;color:#fff;border-radius:50%;width:18px;height:18px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;}
-        .header-section{padding:2rem 1rem;border-bottom:1px solid #e2eefd;text-align:center;}
-        .container{max-width:40rem;margin:0 auto;padding:2rem 1rem;animation:fadeIn .4s ease;}
-        @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-        .course-card{cursor:pointer;padding:1.5rem;margin-bottom:1rem;border:1px solid #bfdbfe;border-radius:1.5rem;transition:all .25s cubic-bezier(.2,.9,.4,1.1);display:flex;align-items:center;justify-content:space-between;background:#ffffff;box-shadow:0 2px 8px rgba(59,130,246,.05);}
-        a.course-card{cursor:pointer;display:flex;color:inherit;}
-        .course-card-content{display:flex;align-items:center;gap:1rem;}
-        .arrow-right{font-size:1.6rem;font-weight:400;color:#3b82f6;opacity:.6;transition:.2s;line-height:1;}
-        .course-card:hover .arrow-right{transform:translateX(5px);opacity:1;color:#1d4ed8;}
-        .course-card:hover{transform:translateY(-4px);background:#eff6ff;border-color:#3b82f6;box-shadow:0 12px 24px -12px rgba(59,130,246,.3);}
-        .top-bar{padding:1rem 1.2rem;position:sticky;top:0;z-index:20;background:#ffffff;border-bottom:1px solid #e2eefd;margin-bottom:.5rem;display:flex;align-items:center;justify-content:space-between;}
-        .back-btn{background:#eff6ff;border:1px solid #bfdbfe;border-radius:2rem;padding:.5rem 1.2rem;font-size:.9rem;font-weight:500;color:#1d4ed8;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px;}
-        .back-btn:hover{background:#3b82f6;color:#fff;border-color:#3b82f6;transform:translateX(-3px);}
-        .footer-fixed{position:fixed;bottom:0;left:0;width:100%;padding:.75rem 1rem;background:#ffffff;border-top:1px solid #e2eefd;box-shadow:0 -4px 16px rgba(59,130,246,.08);display:flex;gap:12px;z-index:200;}
-        .footer-btn{flex:1;padding:.85rem .5rem;border-radius:1.8rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:12px;color:#fff;transition:.3s;font-size:1rem;border:none;cursor:pointer;}
-        .footer-btn svg{width:24px;height:24px;fill:#fff;transition:.2s;}
-        .footer-btn.whatsapp{background:linear-gradient(135deg,#25D366,#128C7E);}
-        .footer-btn:hover{transform:translateY(-3px) scale(1.02);filter:brightness(1.05);}
-        .course-subtitle{display:block;font-size:.7rem;color:#1d4ed8;font-weight:700;margin-top:4px;text-transform:uppercase;}
-        .search-box{width:100%;padding:12px 16px;margin-bottom:20px;background:#ffffff;border:1px solid #bfdbfe;border-radius:2rem;color:#1e293b;font-size:1rem;outline:none;text-align:center;}
-        .search-box:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.15);}
-        .search-box::placeholder{text-align:center;color:#94a3b8;}
-        .scroll-top{position:fixed;bottom:90px;right:20px;background:#3b82f6;color:#fff;border-radius:50%;width:45px;height:45px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transition:.3s;z-index:99;font-size:24px;box-shadow:0 4px 12px rgba(59,130,246,.35);}
-        .scroll-top.show{opacity:1;visibility:visible;}
-        .scroll-top:hover{background:#2563eb;transform:scale(1.1);}
-        .circle-num{width:3rem;height:3rem;border-radius:50%;background:#eff6ff;color:#3b82f6;font-weight:700;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
-        .folder-icon{background:#fef3c7!important;color:#d97706!important;}
-        @media (max-width:550px){.title-gradient{font-size:1.6rem;}.footer-btn{padding:.7rem .5rem;gap:8px;font-size:.85rem;}.footer-btn svg{width:18px;height:18px;}.back-btn{padding:.3rem .8rem;font-size:.8rem;}.scroll-top{bottom:80px;right:15px;width:40px;height:40px;font-size:20px;}.arrow-right{font-size:1.3rem;}.circle-num{width:2.5rem;height:2.5rem;font-size:1rem;}}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Doraemon World">
+<meta name="theme-color" content="#e8f4fd">
+<link rel="apple-touch-icon" href="https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+html{scroll-behavior:smooth;}
+body{background:#dff0fa;color:#1a2a3a;overflow-x:hidden;padding-bottom:80px;font-family:system-ui,'Segoe UI',sans-serif;}
+a,a:hover,a:focus{text-decoration:none!important;color:inherit;}
+h1,h2,h3,h4{font-weight:700;line-height:1.2;}
+.course-card h3{font-size:1.15rem;font-weight:700;color:#1a2a3a !important;display:block;margin-bottom:2px;}
+.hidden{display:none!important;}
+
+/* Page transitions */
+.page{position:absolute;top:0;left:0;width:100%;transform:translateX(100%);opacity:0;transition:transform .22s cubic-bezier(.4,0,.2,1),opacity .18s ease;will-change:transform,opacity;pointer-events:none;min-height:100vh;}
+.page.active{transform:translateX(0);opacity:1;pointer-events:auto;position:relative;}
+.page.slide-out{transform:translateX(-30%);opacity:0;pointer-events:none;}
+
+/* Modal */
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(200,235,252,.85);backdrop-filter:blur(6px);z-index:10000;display:flex;align-items:center;justify-content:center;animation:fadeIn .25s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.modal-box{max-width:28rem;width:90%;padding:2rem 1.5rem;border-radius:1.5rem;background:#ffffff;border:2px solid #29ABE2;text-align:center;box-shadow:0 8px 32px rgba(41,171,226,.25);animation:popIn .28s cubic-bezier(.34,1.56,.64,1);}
+@keyframes popIn{from{transform:scale(.88);opacity:0;}to{transform:scale(1);opacity:1;}}
+
+/* Doraemon img */
+.doraemon-img{width:6.5rem;height:6.5rem;object-fit:cover;border-radius:50%;border:3px solid #29ABE2;margin:0 auto 1rem;display:block;background:#e8f4fd;animation:pulseRing 2.5s ease-out infinite;}
+@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(41,171,226,.45);}70%{box-shadow:0 0 0 12px rgba(41,171,226,0);}100%{box-shadow:0 0 0 0 rgba(41,171,226,0);}}
+
+.title-gradient{font-size:2rem;font-weight:800;background:linear-gradient(135deg,#29ABE2,#0077b6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem;display:inline-block;}
+.subtitle{color:#4a6a80;font-size:.88rem;margin-bottom:1.4rem;line-height:1.5;}
+.tagline{color:#5a7a90;font-size:.9rem;font-style:italic;}
+
+/* Buttons */
+.btn{padding:.75rem 1rem;border-radius:.9rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border:none;font-size:.9rem;transition:transform .1s ease,filter .1s ease;-webkit-user-select:none;user-select:none;}
+.btn:active{transform:scale(.95)!important;filter:brightness(.93);}
+.btn-blue{background:linear-gradient(95deg,#29ABE2,#0077b6);color:#fff;}
+.btn-light{background:#eaf5fb;color:#0077b6;border:1.5px solid #b8dff0;}
+.btn-light:active{background:#d0eaf8;}
+
+/* Notification bar */
+.notification-bar{background:#ffffff;padding:8px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1.5px solid #c8e8f5;position:sticky;top:0;z-index:50;box-shadow:0 1px 6px rgba(41,171,226,.1);}
+.left-placeholder{width:40px;visibility:hidden;}
+.contact-admin-link{background:#eaf5fb;border-radius:40px;padding:7px 14px;display:inline-flex;align-items:center;gap:6px;font-size:.85rem;font-weight:600;color:#0077b6;border:1.5px solid #b8dff0;transition:transform .1s ease,background .12s ease;}
+.contact-admin-link svg{width:17px;height:17px;fill:#29ABE2;}
+.contact-admin-link:active{transform:scale(.94);background:#d0eaf8;}
+.notification-bell{background:#eaf5fb;border-radius:40px;padding:7px 14px;display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-size:1.2rem;border:1.5px solid #b8dff0;position:relative;transition:transform .1s ease;}
+.notification-bell:active{transform:scale(.92);}
+.badge{position:absolute;top:-5px;right:-5px;background:#ef4444;color:#fff;border-radius:50%;width:17px;height:17px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;}
+
+/* Header */
+.header-section{padding:1.8rem 1rem 1.4rem;text-align:center;border-bottom:1.5px solid #c8e8f5;background:#ffffff;}
+
+/* Container */
+.container{max-width:40rem;margin:0 auto;padding:1.5rem 1rem 2rem;}
+
+/* Cards */
+.course-card{cursor:pointer;padding:1.2rem 1.3rem;margin-bottom:.85rem;border:1.5px solid #c8e8f5;border-radius:1.2rem;display:flex;align-items:center;justify-content:space-between;background:#ffffff;box-shadow:0 2px 8px rgba(41,171,226,.08);transition:transform .12s cubic-bezier(.2,.9,.4,1.1),background .12s ease,border-color .12s ease,box-shadow .12s ease;will-change:transform;-webkit-user-select:none;user-select:none;}
+a.course-card{color:inherit;display:flex;}
+.course-card:active{transform:scale(.97);background:#eaf5fb;border-color:#29ABE2;box-shadow:0 0 0 3px rgba(41,171,226,.18);}
+@media(hover:hover){
+  .course-card:hover{transform:translateY(-3px);background:#f0f9fe;border-color:#29ABE2;box-shadow:0 8px 20px -8px rgba(41,171,226,.3);}
+  .course-card:hover .arrow-right{transform:translateX(4px);color:#29ABE2;}
+}
+.course-card-content{display:flex;align-items:center;gap:.9rem;}
+.arrow-right{font-size:1.4rem;color:#93c5d8;transition:transform .15s ease,color .15s ease;line-height:1;}
+.course-subtitle{display:block;font-size:.68rem;color:#0077b6;font-weight:700;margin-top:3px;text-transform:uppercase;letter-spacing:.04em;}
+
+/* Top bar */
+.top-bar{padding:.9rem 1.2rem;position:sticky;top:0;z-index:20;background:#ffffff;border-bottom:1.5px solid #c8e8f5;margin-bottom:.3rem;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 6px rgba(41,171,226,.1);}
+.back-btn{background:#eaf5fb;border:1.5px solid #b8dff0;border-radius:2rem;padding:.45rem 1.1rem;font-size:.85rem;font-weight:600;color:#0077b6;cursor:pointer;transition:transform .1s ease,background .1s ease;display:inline-flex;align-items:center;gap:6px;}
+.back-btn:active{transform:scale(.92);background:#d0eaf8;}
+
+/* Circle icons */
+.circle-num{width:2.8rem;height:2.8rem;border-radius:50%;font-weight:700;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+.folder-icon{background:rgba(41,171,226,.15)!important;color:#0077b6!important;}
+
+/* Search */
+.search-box{width:100%;padding:11px 16px;margin-bottom:16px;background:#f0f8fe;border:1.5px solid #b8dff0;border-radius:2rem;color:#1a2a3a;font-size:.95rem;outline:none;text-align:center;transition:border-color .15s,box-shadow .15s;}
+.search-box:focus{border-color:#29ABE2;box-shadow:0 0 0 3px rgba(41,171,226,.15);}
+.search-box::placeholder{text-align:center;color:#93b8c8;}
+
+/* Footer */
+.footer-fixed{position:fixed;bottom:0;left:0;width:100%;padding:.65rem .9rem;background:#ffffff;border-top:1.5px solid #c8e8f5;display:flex;gap:10px;z-index:200;box-shadow:0 -2px 8px rgba(41,171,226,.1);}
+.footer-btn{flex:1;padding:.8rem .5rem;border-radius:1.5rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;border:none;cursor:pointer;font-size:.95rem;transition:transform .1s ease,filter .1s ease;}
+.footer-btn svg{width:22px;height:22px;fill:#fff;}
+.footer-btn.whatsapp{background:linear-gradient(135deg,#25D366,#128C7E);}
+.footer-btn:active{transform:scale(.95);filter:brightness(.93);}
+
+/* Scroll top */
+.scroll-top{position:fixed;bottom:76px;right:16px;background:#29ABE2;color:#fff;border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;font-weight:700;opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s ease,transform .1s ease;z-index:99;border:none;box-shadow:0 3px 12px rgba(41,171,226,.35);}
+.scroll-top.show{opacity:1;visibility:visible;}
+.scroll-top:active{transform:scale(.9);}
+
+/* Card entrance */
+@keyframes cardIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.course-card{animation:cardIn .2s ease both;}
+.course-card:nth-child(1){animation-delay:.03s;}
+.course-card:nth-child(2){animation-delay:.07s;}
+.course-card:nth-child(3){animation-delay:.11s;}
+.course-card:nth-child(4){animation-delay:.15s;}
+.course-card:nth-child(5){animation-delay:.19s;}
+.course-card:nth-child(6){animation-delay:.23s;}
+.course-card:nth-child(7){animation-delay:.27s;}
+
+/* Noti modal */
+.noti-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(200,235,252,.7);backdrop-filter:blur(4px);z-index:9999;display:flex;align-items:center;justify-content:center;animation:fadeIn .18s ease;}
+.noti-box{max-width:26rem;width:88%;padding:1.8rem 1.5rem;background:#fff;border-radius:1.3rem;border:2px solid #b8dff0;text-align:center;box-shadow:0 8px 24px rgba(41,171,226,.15);animation:popIn .22s cubic-bezier(.34,1.56,.64,1);}
+
+/* Coming soon */
+.coming-soon{padding:2rem;text-align:center;background:#f0f9fe;border-radius:1.2rem;border:1.5px dashed #b8dff0;}
+
+@media(max-width:550px){
+  .title-gradient{font-size:1.5rem;}
+  .footer-btn{gap:8px;font-size:.8rem;}
+  .footer-btn svg{width:18px;height:18px;}
+  .back-btn{padding:.35rem .8rem;font-size:.8rem;}
+  .circle-num{width:2.4rem;height:2.4rem;font-size:1rem;}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+</style>
 </head>
 <body>
+
+<!-- MODAL -->
 <div id="welcomeModal" class="modal-overlay">
-    <div class="glass-panel modal-box">
-        <img src="https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg" alt="Doraemon" class="doraemon-img" onerror="this.src='https://placehold.co/100x100?text=🤖'">
-        <h2 class="title-gradient" style="animation:none;">𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</h2>
-        <p class="subtitle">🔔 <strong>Mandatory:</strong> You must join our official <strong>WhatsApp Channel</strong> to access all free courses and updates.<br>⚠️ Beware of fake channels asking for money!</p>
-        <div style="display:flex;flex-direction:column;gap:.75rem;">
-            <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" target="_blank" class="btn btn-blue" id="joinWhatsAppBtn"><svg viewBox="0 0 24 24" width="18" height="18" fill="#fff" style="margin-right:4px;"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.8 3.08 1.23 4.79 1.23 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm.01 15.21c-1.36 0-2.69-.37-3.84-1.06l-2.81.74.75-2.73c-.75-1.18-1.15-2.55-1.15-3.96 0-4.18 3.4-7.58 7.58-7.58s7.58 3.4 7.58 7.58-3.4 7.58-7.58 7.58z"/><path d="M16.5 13.8c-.25-.12-1.47-.73-1.7-.81-.23-.08-.4-.12-.57.12-.17.24-.66.81-.81.98-.15.17-.3.19-.55.07-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.12-.12.25-.3.38-.45.13-.15.17-.25.25-.42.09-.17.04-.32-.02-.45-.06-.13-.57-1.37-.78-1.88-.2-.5-.4-.43-.57-.44-.15 0-.33-.01-.5-.01-.17 0-.45.06-.68.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.43 1.03 2.6.13.17 1.78 2.72 4.31 3.81.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.28z"/></svg>Join WhatsApp Channel</a>
-            <button id="alreadyJoinedBtn" class="btn btn-dark">✅ I have already joined</button>
-        </div>
-        <p style="font-size:.75rem; color:#64748b; margin-top:1rem;">* Click "Join" to open WhatsApp channel. After joining, click "I have already joined" to continue.</p>
+  <div class="modal-box">
+    <img src="https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg" alt="Doraemon" class="doraemon-img" onerror="this.src='https://placehold.co/100x100?text=🤖'">
+    <h2 class="title-gradient">𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</h2>
+    <p class="subtitle">🔔 <strong>Mandatory:</strong> Join our official <strong>WhatsApp Channel</strong> to access all free courses.<br>⚠️ Beware of fake channels asking for money!</p>
+    <div style="display:flex;flex-direction:column;gap:.7rem;">
+      <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" target="_blank" id="joinWhatsAppBtn" class="btn btn-blue">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.8 3.08 1.23 4.79 1.23 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm.01 15.21c-1.36 0-2.69-.37-3.84-1.06l-2.81.74.75-2.73c-.75-1.18-1.15-2.55-1.15-3.96 0-4.18 3.4-7.58 7.58-7.58s7.58 3.4 7.58 7.58-3.4 7.58-7.58 7.58z"/><path d="M16.5 13.8c-.25-.12-1.47-.73-1.7-.81-.23-.08-.4-.12-.57.12-.17.24-.66.81-.81.98-.15.17-.3.19-.55.07-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.12-.12.25-.3.38-.45.13-.15.17-.25.25-.42.09-.17.04-.32-.02-.45-.06-.13-.57-1.37-.78-1.88-.2-.5-.4-.43-.57-.44-.15 0-.33-.01-.5-.01-.17 0-.45.06-.68.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.43 1.03 2.6.13.17 1.78 2.72 4.31 3.81.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+        Join WhatsApp Channel
+      </a>
+      <button id="alreadyJoinedBtn" class="btn btn-light">✅ I have already joined</button>
     </div>
+    <p style="font-size:.72rem;color:#7a9ab0;margin-top:1rem;">* Open WhatsApp → Join → then tap "Already Joined"</p>
+  </div>
 </div>
-<div id="mainContent" style="display:none;">
-    <div class="notification-bar">
-        <div class="left-placeholder"></div>
-        <a href="https://t.me/do2006rabot" target="_blank" class="contact-admin-link"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.13-.07-.18-.08-.05-.2-.03-.28-.01-.12.02-1.95 1.24-5.5 3.63-.52.36-.99.53-1.41.52-.46-.01-1.35-.26-2.01-.48-.81-.27-1.45-.42-1.4-.88.03-.25.38-.51.82-.78 1.49-.92 3.58-1.95 5.6-2.84 2.66-1.18 3.22-1.38 3.58-1.38.08 0 .26.02.38.12.1.08.13.19.14.28-.01.07-.05.44-.13 1.04z"/></svg>Contact Admin</a>
-        <div id="notificationBell" class="notification-bell">🔔<span class="badge" id="notiBadge">0</span></div>
+
+<!-- MAIN -->
+<div id="mainContent" style="display:none;position:relative;overflow:hidden;">
+
+  <!-- Notification Bar -->
+  <div class="notification-bar">
+    <div class="left-placeholder"></div>
+    <a href="https://t.me/do2006rabot" target="_blank" class="contact-admin-link">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.13-.07-.18-.08-.05-.2-.03-.28-.01-.12.02-1.95 1.24-5.5 3.63-.52.36-.99.53-1.41.52-.46-.01-1.35-.26-2.01-.48-.81-.27-1.45-.42-1.4-.88.03-.25.38-.51.82-.78 1.49-.92 3.58-1.95 5.6-2.84 2.66-1.18 3.22-1.38 3.58-1.38.08 0 .26.02.38.12.1.08.13.19.14.28-.01.07-.05.44-.13 1.04z"/></svg>
+      Contact Admin
+    </a>
+    <div id="notificationBell" class="notification-bell">🔔<span class="badge" id="notiBadge">0</span></div>
+  </div>
+
+  <!-- PAGE: Dashboard -->
+  <div id="pageDashboard" class="page active" data-depth="0">
+    <div class="header-section">
+      <img src="https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg" alt="Doraemon" class="doraemon-img" style="width:7rem;height:7rem;" onerror="this.src='https://placehold.co/100x100?text=🤖'">
+      <h1 class="title-gradient" style="font-size:2.2rem;">𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</h1>
+      <p class="tagline">Time machine kharab hai, isliye yahan fash gaya hu 🤖⏳</p>
     </div>
-    
-    <div id="pageDashboard">
-        <div class="header-section text-center">
-            <img src="https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg" alt="Doraemon" class="doraemon-img" style="width:7rem;height:7rem;margin:0 auto;" onerror="this.src='https://placehold.co/100x100?text=🤖'">
-            <h1 class="title-gradient" style="font-size:2.4rem">𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅</h1>
-            <p class="tagline">Time machine kharab hai, isliye yahan fash gaya hu 🤖⏳</p>
-        </div>
-        <div class="container">
-            <h2 style="margin-bottom:1.5rem;font-size:1.4rem;text-align:center;">📚 Available Courses</h2>
-            <a href="https://t.me/ranimam8free" target="_blank" class="glass-panel course-card"><div class="course-card-content"><div class="circle-num" style="background:#3b82f6;color:#fff;">📂</div><div><h3 style="color:#1e293b;font-size:1.5rem">ACHIEVER 8.0</h3><span class="course-subtitle">BY RANI MAM</span></div></div><span class="arrow-right">❯</span></a>
-            <div class="glass-panel course-card" onclick="openPage('pageSSC')"><div class="course-card-content"><div class="circle-num" style="background:#10b981;color:#fff;">🎯</div><div><h3 style="color:#1e293b;font-size:1.5rem">SSC COMPLETE PACKAGE</h3><span class="course-subtitle">COMPLETE BATCH</span></div></div><span class="arrow-right">❯</span></div>
-            <a href="https://tgdoraemonmocks.edgeone.dev/" target="_blank" class="glass-panel course-card"><div class="course-card-content"><div class="circle-num" style="background:#f59e0b;color:#fff;">📋</div><div><h3 style="color:#1e293b;font-size:1.5rem">Mocks</h3><span class="course-subtitle">PRACTICE TESTS</span></div></div><span class="arrow-right">❯</span></a>
-            <a href="http://parmar4batch.edgeone.dev" target="_blank" class="glass-panel course-card"><div class="course-card-content"><div class="circle-num" style="background:#8b5cf6;color:#fff;">📘</div><div><h3 style="color:#1e293b;font-size:1.5rem">PARMAR 4.0</h3><span class="course-subtitle">COMPLETE BATCH</span></div></div><span class="arrow-right">❯</span></a>
-            <a href="https://selectionway.edgeone.app" target="_blank" class="glass-panel course-card"><div class="course-card-content"><div class="circle-num" style="background:#f59e0b;color:#fff;">🚀</div><div><h3 style="color:#1e293b;font-size:1.5rem">Selection Way</h3><span class="course-subtitle">LIVE & RECORDED COURSES</span></div></div><span class="arrow-right">❯</span></a>
-            <a href="https://pwthor.live/study/batches" target="_blank" class="glass-panel course-card"><div class="course-card-content"><div class="circle-num" style="background:#8b5cf6;color:#fff;">📁</div><div><h3 style="color:#1e293b;font-size:1.5rem">PW</h3><span class="course-subtitle">PHYSICS WALLAH BATCHES</span></div></div><span class="arrow-right">❯</span></a>
-            <a href="https://spidyuniverserwa.vercel.app" target="_blank" class="glass-panel course-card"><div class="course-card-content"><div class="circle-num" style="background:#ef4444;color:#fff;">📘</div><div><h3 style="color:#1e293b;font-size:1.5rem">RWA</h3><span class="course-subtitle">RWA ACADEMY</span></div></div><span class="arrow-right">❯</span></a>
-        </div>
+    <div class="container">
+      <h2 style="margin-bottom:1.2rem;font-size:1.2rem;text-align:center;color:#0077b6;">📚 Available Courses</h2>
+      <a href="https://doraemonapp.vercel.app/" target="_blank" class="course-card">
+        <div class="course-card-content"><div class="circle-num" style="background:#29ABE2;color:#fff;">📂</div><div><h3 style="color:#1a2a3a;font-size:1.2rem;">ACHIEVER 8.0</h3><span class="course-subtitle">BY RANI MAM</span></div></div><span class="arrow-right">❯</span>
+      </a>
+      <div class="course-card" onclick="openPage('pageSSC','pageDashboard')">
+        <div class="course-card-content"><div class="circle-num" style="background:#10b981;color:#fff;">🎯</div><div><h3 style="color:#1a2a3a;font-size:1.2rem;">SSC COMPLETE PACKAGE</h3><span class="course-subtitle">COMPLETE BATCH</span></div></div><span class="arrow-right">❯</span>
+      </div>
+      <a href="https://tgdoraemonmocks.edgeone.dev/" target="_blank" class="course-card">
+        <div class="course-card-content"><div class="circle-num" style="background:#f59e0b;color:#fff;">📋</div><div><h3 style="color:#1a2a3a;font-size:1.2rem;">Mocks</h3><span class="course-subtitle">PRACTICE TESTS</span></div></div><span class="arrow-right">❯</span>
+      </a>
+      <a href="http://parmar4batch.edgeone.dev" target="_blank" class="course-card">
+        <div class="course-card-content"><div class="circle-num" style="background:#8b5cf6;color:#fff;">📘</div><div><h3 style="color:#1a2a3a;font-size:1.2rem;">PARMAR 4.0</h3><span class="course-subtitle">COMPLETE BATCH</span></div></div><span class="arrow-right">❯</span>
+      </a>
+      <a href="https://selectionway.edgeone.app" target="_blank" class="course-card">
+        <div class="course-card-content"><div class="circle-num" style="background:#f59e0b;color:#fff;">🚀</div><div><h3 style="color:#1a2a3a;font-size:1.2rem;">Selection Way</h3><span class="course-subtitle">LIVE & RECORDED COURSES</span></div></div><span class="arrow-right">❯</span>
+      </a>
+      <a href="https://pwthor.live/study/batches" target="_blank" class="course-card">
+        <div class="course-card-content"><div class="circle-num" style="background:#8b5cf6;color:#fff;">📁</div><div><h3 style="color:#1a2a3a;font-size:1.2rem;">PW</h3><span class="course-subtitle">PHYSICS WALLAH BATCHES</span></div></div><span class="arrow-right">❯</span>
+      </a>
     </div>
-    
-    <div id="pageSSC" class="hidden">
-        <div class="glass-panel top-bar"><button onclick="openPage('pageDashboard')" class="back-btn">← Back</button><h2>SSC COMPLETE</h2><div style="width:40px"></div></div>
-        <div class="container">
-            <input type="text" class="search-box" placeholder="🔍 Search folders..." onkeyup="filterItems(this, '.course-card')" id="sscSearch">
-            <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num folder-icon">📦</div><h3 style="color:#1e293b">Complete</h3></div><span class="arrow-right">❯</span></a>
-            <div class="course-card" onclick="openPage('pageSSCBatches')"><div class="course-card-content"><div class="circle-num folder-icon">📦</div><h3 style="color:#1e293b">CWxSW</h3></div><span class="arrow-right">❯</span></div>
-            <div class="course-card" onclick="openPage('pageSSCMaths')"><div class="course-card-content"><div class="circle-num folder-icon">📐</div><h3 style="color:#1e293b">Maths</h3></div><span class="arrow-right">❯</span></div>
-            <div class="course-card" onclick="openPage('pageSSCScience')"><div class="course-card-content"><div class="circle-num folder-icon">🔬</div><h3 style="color:#1e293b">Science</h3></div><span class="arrow-right">❯</span></div>
-            <div class="course-card" onclick="openPage('pageSSCEnglish')"><div class="course-card-content"><div class="circle-num folder-icon">📖</div><h3 style="color:#1e293b">English</h3></div><span class="arrow-right">❯</span></div>
-            <div class="course-card" onclick="openPage('pageSSCGS')"><div class="course-card-content"><div class="circle-num folder-icon">🌍</div><h3 style="color:#1e293b">GS</h3></div><span class="arrow-right">❯</span></div>
-            <div class="course-card" onclick="openPage('pageSSCReasoning')"><div class="course-card-content"><div class="circle-num folder-icon">🧠</div><h3 style="color:#1e293b">Reasoning</h3></div><span class="arrow-right">❯</span></div>
-        </div>
+  </div>
+
+  <!-- PAGE: SSC -->
+  <div id="pageSSC" class="page" data-depth="1">
+    <div class="top-bar">
+      <button class="back-btn" onclick="openPage('pageDashboard','pageSSC')">← Back</button>
+      <h2 style="font-size:1rem;color:#1a2a3a;">SSC COMPLETE</h2>
+      <div style="width:40px"></div>
     </div>
-    
-    <!-- CWxSW folder - Pratham link updated -->
-    <div id="pageSSCBatches" class="hidden">
-        <div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>CWxSW</h2><div></div></div>
-        <div class="container">
-            <a href="https://selectionway.edgeone.app/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">🚀</div><div><h3>Selection Way</h3><span class="course-subtitle">NEW BATCH</span></div></div><span class="arrow-right">❯</span></a>
-            <!-- Pratham link changed to new URL -->
-            <a href="https://sscpratham02.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📘</div><div><h3>SSC Pratham 02</h3><span class="course-subtitle">BATCH</span></div></div><span class="arrow-right">❯</span></a>
-        </div>
+    <div class="container">
+      <input type="search" class="search-box" placeholder="🔍 Search folders..." oninput="filterItems(this,'.course-card')">
+      <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" target="_blank" class="course-card">
+        <div class="course-card-content"><div class="circle-num folder-icon">📦</div><h3 style="color:#1a2a3a;">Complete</h3></div><span class="arrow-right">❯</span>
+      </a>
+      <div class="course-card" onclick="openPage('pageSSCBatches','pageSSC')">
+        <div class="course-card-content"><div class="circle-num folder-icon">📦</div><h3 style="color:#1a2a3a;">CWxSW</h3></div><span class="arrow-right">❯</span>
+      </div>
+      <div class="course-card" onclick="openPage('pageSSCMaths','pageSSC')">
+        <div class="course-card-content"><div class="circle-num folder-icon">📐</div><h3 style="color:#1a2a3a;">Maths</h3></div><span class="arrow-right">❯</span>
+      </div>
+      <div class="course-card" onclick="openPage('pageSSCScience','pageSSC')">
+        <div class="course-card-content"><div class="circle-num folder-icon">🔬</div><h3 style="color:#1a2a3a;">Science</h3></div><span class="arrow-right">❯</span>
+      </div>
+      <div class="course-card" onclick="openPage('pageSSCEnglish','pageSSC')">
+        <div class="course-card-content"><div class="circle-num folder-icon">📖</div><h3 style="color:#1a2a3a;">English</h3></div><span class="arrow-right">❯</span>
+      </div>
+      <div class="course-card" onclick="openPage('pageSSCGS','pageSSC')">
+        <div class="course-card-content"><div class="circle-num folder-icon">🌍</div><h3 style="color:#1a2a3a;">GS</h3></div><span class="arrow-right">❯</span>
+      </div>
+      <div class="course-card" onclick="openPage('pageSSCReasoning','pageSSC')">
+        <div class="course-card-content"><div class="circle-num folder-icon">🧠</div><h3 style="color:#1a2a3a;">Reasoning</h3></div><span class="arrow-right">❯</span>
+      </div>
     </div>
-    
-    <div id="pageSSCMaths" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>Maths</h2><div></div></div><div class="container"><a href="https://abhinaysirtg.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Abhinay Sir</h3></div></div><span class="arrow-right">❯</span></a><a href="https://abhinaysirtopper.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Abhinay Sir Topper</h3></div></div><span class="arrow-right">❯</span></a><a href="https://rakeshsirmaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Rakesh Sir</h3></div></div><span class="arrow-right">❯</span></a><a href="https://gagansirmaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📐</div><div><h3>Gagan Sir</h3></div></div><span class="arrow-right">❯</span></a></div></div>
-    <div id="pageSSCScience" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>Science</h2><div></div></div><div class="container"><div class="glass-panel" style="padding:2rem;text-align:center"><p>✨ More content coming soon! ✨</p></div></div></div>
-    <div id="pageSSCEnglish" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>English</h2><div></div></div><div class="container"><a href="https://neetumam68.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📖</div><div><h3>Neet Mam</h3></div></div><span class="arrow-right">❯</span></a><a href="https://jaydeepsirenglish.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">📖</div><div><h3>Jaydeep Sir</h3></div></div><span class="arrow-right">❯</span></a></div></div>
-    <div id="pageSSCGS" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>GS</h2><div></div></div><div class="container"><div class="glass-panel" style="padding:2rem;text-align:center"><p>✨ More content coming soon! ✨</p></div></div></div>
-    <div id="pageSSCReasoning" class="hidden"><div class="glass-panel top-bar"><button onclick="openPage('pageSSC')" class="back-btn">← Back</button><h2>Reasoning</h2><div></div></div><div class="container"><a href="https://piyushsirreasoning.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num">🧠</div><div><h3>Piyush Sir</h3></div></div><span class="arrow-right">❯</span></a></div></div>
-    
-    <div class="footer-fixed">
-        <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" target="_blank" class="footer-btn whatsapp"><svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.8 3.08 1.23 4.79 1.23 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm.01 15.21c-1.36 0-2.69-.37-3.84-1.06l-2.81.74.75-2.73c-.75-1.18-1.15-2.55-1.15-3.96 0-4.18 3.4-7.58 7.58-7.58s7.58 3.4 7.58 7.58-3.4 7.58-7.58 7.58z"/><path d="M16.5 13.8c-.25-.12-1.47-.73-1.7-.81-.23-.08-.4-.12-.57.12-.17.24-.66.81-.81.98-.15.17-.3.19-.55.07-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.12-.12.25-.3.38-.45.13-.15.17-.25.25-.42.09-.17.04-.32-.02-.45-.06-.13-.57-1.37-.78-1.88-.2-.5-.4-.43-.57-.44-.15 0-.33-.01-.5-.01-.17 0-.45.06-.68.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.43 1.03 2.6.13.17 1.78 2.72 4.31 3.81.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.28z"/></svg>WhatsApp Channel</a>
+  </div>
+
+  <!-- PAGE: SSC Batches -->
+  <div id="pageSSCBatches" class="page" data-depth="2">
+    <div class="top-bar">
+      <button class="back-btn" onclick="openPage('pageSSC','pageSSCBatches')">← Back</button>
+      <h2 style="font-size:1rem;color:#1a2a3a;">CWxSW</h2>
+      <div style="width:40px"></div>
     </div>
+    <div class="container">
+      <a href="https://selectionway.edgeone.app/" target="_blank" class="course-card">
+        <div class="course-card-content"><div class="circle-num" style="background:#f59e0b;color:#fff;">🚀</div><div><h3 style="color:#1a2a3a;">Selection Way</h3><span class="course-subtitle">NEW BATCH</span></div></div><span class="arrow-right">❯</span>
+      </a>
+      <a href="https://sscpratham02.edgeone.dev/" target="_blank" class="course-card">
+        <div class="course-card-content"><div class="circle-num" style="background:#29ABE2;color:#fff;">📘</div><div><h3 style="color:#1a2a3a;">SSC Pratham 02</h3><span class="course-subtitle">BATCH</span></div></div><span class="arrow-right">❯</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- PAGE: Maths -->
+  <div id="pageSSCMaths" class="page" data-depth="2">
+    <div class="top-bar">
+      <button class="back-btn" onclick="openPage('pageSSC','pageSSCMaths')">← Back</button>
+      <h2 style="font-size:1rem;color:#1a2a3a;">Maths</h2>
+      <div style="width:40px"></div>
+    </div>
+    <div class="container">
+      <a href="https://abhinaysirtg.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num" style="background:#10b981;color:#fff;">📐</div><h3 style="color:#1a2a3a;">Abhinay Sir</h3></div><span class="arrow-right">❯</span></a>
+      <a href="https://abhinaysirtopper.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num" style="background:#10b981;color:#fff;">📐</div><h3 style="color:#1a2a3a;">Abhinay Sir Topper</h3></div><span class="arrow-right">❯</span></a>
+      <a href="https://rakeshsirmaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num" style="background:#10b981;color:#fff;">📐</div><h3 style="color:#1a2a3a;">Rakesh Sir</h3></div><span class="arrow-right">❯</span></a>
+      <a href="https://gagansirmaths.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num" style="background:#10b981;color:#fff;">📐</div><h3 style="color:#1a2a3a;">Gagan Sir</h3></div><span class="arrow-right">❯</span></a>
+    </div>
+  </div>
+
+  <!-- PAGE: Science -->
+  <div id="pageSSCScience" class="page" data-depth="2">
+    <div class="top-bar">
+      <button class="back-btn" onclick="openPage('pageSSC','pageSSCScience')">← Back</button>
+      <h2 style="font-size:1rem;color:#1a2a3a;">Science</h2>
+      <div style="width:40px"></div>
+    </div>
+    <div class="container"><div class="coming-soon"><p style="font-size:1.2rem;">✨ Coming Soon ✨</p><p style="color:#5a7a90;font-size:.85rem;margin-top:.5rem;">Content will be added soon!</p></div></div>
+  </div>
+
+  <!-- PAGE: English -->
+  <div id="pageSSCEnglish" class="page" data-depth="2">
+    <div class="top-bar">
+      <button class="back-btn" onclick="openPage('pageSSC','pageSSCEnglish')">← Back</button>
+      <h2 style="font-size:1rem;color:#1a2a3a;">English</h2>
+      <div style="width:40px"></div>
+    </div>
+    <div class="container">
+      <a href="https://neetumam68.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num" style="background:#ec4899;color:#fff;">📖</div><h3 style="color:#1a2a3a;">Neet Mam</h3></div><span class="arrow-right">❯</span></a>
+      <a href="https://jaydeepsirenglish.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num" style="background:#ec4899;color:#fff;">📖</div><h3 style="color:#1a2a3a;">Jaydeep Sir</h3></div><span class="arrow-right">❯</span></a>
+    </div>
+  </div>
+
+  <!-- PAGE: GS -->
+  <div id="pageSSCGS" class="page" data-depth="2">
+    <div class="top-bar">
+      <button class="back-btn" onclick="openPage('pageSSC','pageSSCGS')">← Back</button>
+      <h2 style="font-size:1rem;color:#1a2a3a;">GS</h2>
+      <div style="width:40px"></div>
+    </div>
+    <div class="container"><div class="coming-soon"><p style="font-size:1.2rem;">✨ Coming Soon ✨</p><p style="color:#5a7a90;font-size:.85rem;margin-top:.5rem;">Content will be added soon!</p></div></div>
+  </div>
+
+  <!-- PAGE: Reasoning -->
+  <div id="pageSSCReasoning" class="page" data-depth="2">
+    <div class="top-bar">
+      <button class="back-btn" onclick="openPage('pageSSC','pageSSCReasoning')">← Back</button>
+      <h2 style="font-size:1rem;color:#1a2a3a;">Reasoning</h2>
+      <div style="width:40px"></div>
+    </div>
+    <div class="container">
+      <a href="https://piyushsirreasoning.edgeone.dev/" target="_blank" class="course-card"><div class="course-card-content"><div class="circle-num" style="background:#f59e0b;color:#fff;">🧠</div><h3 style="color:#1a2a3a;">Piyush Sir</h3></div><span class="arrow-right">❯</span></a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-fixed">
+    <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" target="_blank" class="footer-btn whatsapp">
+      <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.8 3.08 1.23 4.79 1.23 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm.01 15.21c-1.36 0-2.69-.37-3.84-1.06l-2.81.74.75-2.73c-.75-1.18-1.15-2.55-1.15-3.96 0-4.18 3.4-7.58 7.58-7.58s7.58 3.4 7.58 7.58-3.4 7.58-7.58 7.58z"/><path d="M16.5 13.8c-.25-.12-1.47-.73-1.7-.81-.23-.08-.4-.12-.57.12-.17.24-.66.81-.81.98-.15.17-.3.19-.55.07-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.12-.12.25-.3.38-.45.13-.15.17-.25.25-.42.09-.17.04-.32-.02-.45-.06-.13-.57-1.37-.78-1.88-.2-.5-.4-.43-.57-.44-.15 0-.33-.01-.5-.01-.17 0-.45.06-.68.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.43 1.03 2.6.13.17 1.78 2.72 4.31 3.81.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+      WhatsApp Channel
+    </a>
+  </div>
 </div>
-<button id="scrollTopBtn" class="scroll-top" title="Go to top">↑</button>
+
+<button id="scrollTopBtn" class="scroll-top">↑</button>
 
 <script>
+// Modal
 (function(){
-    var modal=document.getElementById('welcomeModal'), main=document.getElementById('mainContent');
-    document.getElementById('joinWhatsAppBtn').onclick=function(){modal.style.display='none';main.style.display='block'};
-    document.getElementById('alreadyJoinedBtn').onclick=function(){modal.style.display='none';main.style.display='block'};
+  var modal=document.getElementById('welcomeModal'),main=document.getElementById('mainContent');
+  function show(){modal.style.display='none';main.style.display='block';}
+  document.getElementById('joinWhatsAppBtn').addEventListener('click',show);
+  document.getElementById('alreadyJoinedBtn').addEventListener('click',show);
 })();
 
-document.getElementById('notificationBell')?.addEventListener('click',function(){
-    var m=document.createElement('div');
-    m.className='modal-overlay';
-    m.innerHTML='<div class="glass-panel modal-box"><h3 style="color:#1e293b;margin-bottom:15px;">🔔 Notifications</h3><p>No new notifications at the moment.</p><button class="btn btn-dark" style="margin-top:20px;" onclick="this.parentElement.parentElement.remove()">Close</button></div>';
-    document.body.appendChild(m);
+// Page nav
+var currentPage='pageDashboard';
+function openPage(toId,fromId){
+  if(toId===currentPage)return;
+  var from=document.getElementById(fromId||currentPage);
+  var to=document.getElementById(toId);
+  if(!to)return;
+  var goingBack=parseInt(to.dataset.depth)<parseInt(from.dataset.depth);
+  from.classList.remove('active');
+  from.classList.add('slide-out');
+  to.style.transform=goingBack?'translateX(-30%)':'translateX(100%)';
+  to.style.opacity='0';
+  to.classList.remove('hidden');
+  to.offsetHeight;
+  requestAnimationFrame(function(){
+    to.style.transition='transform .22s cubic-bezier(.4,0,.2,1),opacity .18s ease';
+    to.style.transform='translateX(0)';
+    to.style.opacity='1';
+    to.classList.add('active');
+  });
+  setTimeout(function(){from.classList.remove('slide-out');from.style.transform='';from.style.opacity='';},230);
+  currentPage=toId;
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+// Notification
+document.getElementById('notificationBell').addEventListener('click',function(){
+  var m=document.createElement('div');
+  m.className='noti-modal';
+  m.innerHTML='<div class="noti-box"><h3 style="color:#1a2a3a;margin-bottom:12px;">🔔 Notifications</h3><p style="color:#5a7a90;">No new notifications.</p><button class="btn btn-light" style="margin-top:18px;width:100%;">Close</button></div>';
+  m.querySelector('.btn').onclick=function(){document.body.removeChild(m);};
+  m.onclick=function(e){if(e.target===m)document.body.removeChild(m);};
+  document.body.appendChild(m);
 });
 
-var scrollBtn=document.getElementById('scrollTopBtn');
-window.addEventListener('scroll',function(){window.scrollY>300?scrollBtn.classList.add('show'):scrollBtn.classList.remove('show')});
-scrollBtn.onclick=function(){window.scrollTo({top:0,behavior:'smooth'})};
+// Scroll top
+var sb=document.getElementById('scrollTopBtn');
+window.addEventListener('scroll',function(){sb.classList.toggle('show',window.scrollY>280);},{passive:true});
+sb.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 
-function openPage(pageId){
-    var pages=['pageDashboard','pageSSC','pageSSCBatches','pageSSCMaths','pageSSCScience','pageSSCEnglish','pageSSCGS','pageSSCReasoning'];
-    for(var i=0;i<pages.length;i++){
-        var el=document.getElementById(pages[i]);
-        if(el)el.classList.add('hidden');
-    }
-    document.getElementById(pageId).classList.remove('hidden');
-    window.scrollTo(0,0);
-}
-
+// Filter
 function filterItems(input,selector){
-    var filter=input.value.toLowerCase();
-    var items=document.querySelectorAll(selector);
-    for(var i=0;i<items.length;i++){
-        var text=items[i].innerText.toLowerCase();
-        items[i].style.display=text.includes(filter)?'':'none';
-    }
+  var f=input.value.toLowerCase().trim();
+  var parent=input.closest('.container')||document;
+  parent.querySelectorAll(selector).forEach(function(el){el.style.display=el.innerText.toLowerCase().includes(f)?'':'none';});
 }
 
+// PWA
 (function(){
-    var manifest = {
-        name: "𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅",
-        short_name: "Doraemon",
-        start_url: "/",
-        display: "standalone",
-        theme_color: "#3b82f6",
-        background_color: "#eff6ff",
-        icons: [
-            { src: "https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg", sizes: "192x192", type: "image/jpeg" },
-            { src: "https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg", sizes: "512x512", type: "image/jpeg" }
-        ]
-    };
-    var manifestBlob = new Blob([JSON.stringify(manifest)], {type:'application/json'});
-    var manifestURL = URL.createObjectURL(manifestBlob);
-    var link = document.createElement('link');
-    link.rel = 'manifest';
-    link.href = manifestURL;
-    document.head.appendChild(link);
+  var m={name:"𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅",short_name:"Doraemon",start_url:"/",display:"standalone",theme_color:"#e8f4fd",background_color:"#dff0fa",icons:[{src:"https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg",sizes:"192x192",type:"image/jpeg"},{src:"https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg",sizes:"512x512",type:"image/jpeg"}]};
+  var l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:'application/json'}));document.head.appendChild(l);
 })();
 </script>
 </body>
