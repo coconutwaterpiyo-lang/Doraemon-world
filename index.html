@@ -123,6 +123,80 @@ a.course-card{color:inherit;display:flex;}
   .circle-num{width:2.4rem;height:2.4rem;font-size:1rem;}
 }
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+
+/* =============================================
+   SHARE UNLOCK POPUP  (share_unlock_v2)
+   ============================================= */
+#shareUnlockOverlay{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(10,40,70,.55);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  z-index:99999;
+  display:flex;align-items:center;justify-content:center;
+  padding:16px;
+  animation:suFadeIn .3s ease both;
+}
+@keyframes suFadeIn{from{opacity:0;}to{opacity:1;}}
+#shareUnlockBox{
+  max-width:26rem;width:100%;
+  background:linear-gradient(145deg,rgba(255,255,255,.97),rgba(235,248,255,.97));
+  border:1.5px solid rgba(41,171,226,.35);
+  border-radius:1.6rem;
+  padding:1.8rem 1.5rem 1.5rem;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(0,80,150,.25),0 0 0 1px rgba(41,171,226,.12);
+  animation:suPopIn .35s cubic-bezier(.34,1.56,.64,1) both;
+  position:relative;overflow:hidden;
+}
+@keyframes suPopIn{from{transform:scale(.82);opacity:0;}to{transform:scale(1);opacity:1;}}
+#shareUnlockBox::before{
+  content:'';position:absolute;top:-60px;left:-60px;
+  width:220px;height:220px;
+  background:radial-gradient(circle,rgba(41,171,226,.18) 0%,transparent 70%);
+  pointer-events:none;
+}
+.su-icon{font-size:2.4rem;margin-bottom:.5rem;display:block;}
+.su-title{
+  font-size:1.15rem;font-weight:800;
+  background:linear-gradient(120deg,#0077b6,#29ABE2);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:.6rem;line-height:1.3;
+}
+.su-desc{color:#2a4a60;font-size:.82rem;line-height:1.55;margin-bottom:.9rem;}
+.su-benefits{
+  background:linear-gradient(135deg,rgba(41,171,226,.1),rgba(0,119,182,.07));
+  border:1px solid rgba(41,171,226,.25);
+  border-radius:1rem;padding:.85rem 1rem;
+  margin-bottom:.9rem;text-align:left;
+}
+.su-benefits p{font-size:.8rem;color:#1a3a50;margin-bottom:.3rem;line-height:1.45;}
+.su-benefits p:last-child{margin-bottom:0;}
+.su-links{margin-bottom:.9rem;}
+.su-links a{display:block;font-size:.72rem;color:#0077b6;text-decoration:none;margin-bottom:.25rem;word-break:break-all;font-weight:600;}
+.su-links a:hover{text-decoration:underline;}
+.su-heart{font-size:.75rem;color:#e05a7a;margin-bottom:.9rem;font-style:italic;}
+.su-btn-share{
+  width:100%;padding:.85rem;margin-bottom:.55rem;
+  background:linear-gradient(95deg,#29ABE2,#0077b6);
+  color:#fff;font-weight:700;font-size:.95rem;
+  border:none;border-radius:1rem;cursor:pointer;
+  transition:transform .1s ease,filter .1s ease;
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+}
+.su-btn-share:active{transform:scale(.96);filter:brightness(.93);}
+.su-btn-done{
+  width:100%;padding:.75rem;
+  background:#fff;color:#0077b6;font-weight:700;font-size:.88rem;
+  border:1.5px solid #b8dff0;border-radius:1rem;cursor:pointer;
+  transition:transform .1s ease,background .1s ease;
+}
+.su-btn-done:active{transform:scale(.96);background:#eaf5fb;}
+#suCopiedMsg{
+  font-size:.75rem;color:#059669;font-weight:600;
+  margin-bottom:.5rem;display:none;
+  animation:suFadeIn .2s ease;
+}
 </style>
 </head>
 <body>
@@ -300,6 +374,31 @@ a.course-card{color:inherit;display:flex;}
     </div>
   </div>
 
+  <!-- SHARE UNLOCK POPUP (share_unlock_v2) -->
+  <div id="shareUnlockOverlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="suTitle">
+    <div id="shareUnlockBox">
+      <span class="su-icon">📢</span>
+      <p class="su-title" id="suTitle">Share This Website to Unlock Free Content</p>
+      <p class="su-desc">Share this website with your friends and family to unlock unlimited <strong>FREE SSC study content</strong>.</p>
+      <div class="su-benefits">
+        <p>🎓 <strong>What you'll get:</strong></p>
+        <p>✅ Free SSC Lecture Batches</p>
+        <p>✅ Complete Courses</p>
+        <p>✅ Notes &amp; PDFs</p>
+        <p>✅ Practice Materials</p>
+        <p>✅ Daily Study Resources</p>
+      </div>
+      <div class="su-links">
+        <a href="https://tgdoraemon.vercel.app" target="_blank">🌐 https://tgdoraemon.vercel.app</a>
+        <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" target="_blank">💬 Join our WhatsApp Channel</a>
+      </div>
+      <p class="su-heart">❤️ Help more students by sharing this website.</p>
+      <div id="suCopiedMsg">✅ Link copied successfully. Please share it manually.</div>
+      <button class="su-btn-share" id="suShareBtn">📤 Share Now</button>
+      <button class="su-btn-done" id="suDoneBtn">✅ I Have Already Shared</button>
+    </div>
+  </div>
+
   <!-- Footer -->
   <div class="footer-fixed">
     <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" target="_blank" class="footer-btn whatsapp">
@@ -312,7 +411,7 @@ a.course-card{color:inherit;display:flex;}
 <button id="scrollTopBtn" class="scroll-top">↑</button>
 
 <script>
-// Modal
+// ── Welcome Modal ──────────────────────────────────────────────
 (function(){
   var modal=document.getElementById('welcomeModal'),main=document.getElementById('mainContent');
   function show(){modal.style.display='none';main.style.display='block';}
@@ -320,7 +419,105 @@ a.course-card{color:inherit;display:flex;}
   document.getElementById('alreadyJoinedBtn').addEventListener('click',show);
 })();
 
-// Page nav
+// ── Share Unlock Popup (share_unlock_v2) ───────────────────────
+var SU = (function(){
+  var STORAGE_KEY = 'share_unlock_v2';
+  var overlay     = document.getElementById('shareUnlockOverlay');
+  var shareBtn    = document.getElementById('suShareBtn');
+  var doneBtn     = document.getElementById('suDoneBtn');
+  var copiedMsg   = document.getElementById('suCopiedMsg');
+
+  // Pending action: {type:'page', toId, fromId} | {type:'link', href, target}
+  var _pending = null;
+
+  /** Has the user already unlocked? */
+  function isUnlocked(){
+    try{ return localStorage.getItem(STORAGE_KEY)==='true'; }catch(e){ return false; }
+  }
+
+  /** Mark as unlocked */
+  function markUnlocked(){
+    try{ localStorage.setItem(STORAGE_KEY,'true'); }catch(e){}
+  }
+
+  /** Show the popup, store the pending action */
+  function show(pending){
+    _pending = pending;
+    overlay.style.display = 'flex';
+    copiedMsg.style.display = 'none';
+  }
+
+  /** Hide popup and execute the pending action */
+  function hideAndProceed(){
+    overlay.style.display = 'none';
+    if(!_pending) return;
+    var p = _pending;
+    _pending = null;
+    if(p.type === 'page'){
+      openPage(p.toId, p.fromId);
+    } else if(p.type === 'link'){
+      window.open(p.href, p.target || '_blank');
+    }
+  }
+
+  // Share Now button
+  shareBtn.addEventListener('click', function(){
+    var shareText =
+      '🎓 FREE SSC Content Website\n\n' +
+      'Get FREE Lecture Batches, Notes, PDFs and Complete Courses.\n\n' +
+      '🌐 Website:\nhttps://tgdoraemon.vercel.app\n\n' +
+      '💬 Join WhatsApp Channel:\nhttps://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z';
+
+    if(navigator.share){
+      navigator.share({
+        title: '🎓 FREE SSC Content Website',
+        text: shareText,
+        url: 'https://tgdoraemon.vercel.app'
+      }).catch(function(){/* user cancelled */});
+    } else {
+      // Fallback: copy URL to clipboard
+      var text = 'https://tgdoraemon.vercel.app';
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){
+          copiedMsg.style.display='block';
+        }).catch(function(){ legacyCopy(text); });
+      } else {
+        legacyCopy(text);
+      }
+    }
+  });
+
+  function legacyCopy(text){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);
+    ta.focus();ta.select();
+    try{ document.execCommand('copy'); copiedMsg.style.display='block'; }catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  // "I Have Already Shared" button
+  doneBtn.addEventListener('click', function(){
+    markUnlocked();
+    hideAndProceed();
+  });
+
+  // Expose intercept functions
+  return {
+    isUnlocked: isUnlocked,
+    interceptPage: function(toId, fromId){
+      if(isUnlocked()){ openPage(toId, fromId); return; }
+      show({type:'page', toId:toId, fromId:fromId});
+    },
+    interceptLink: function(href, target){
+      if(isUnlocked()){ window.open(href, target||'_blank'); return; }
+      show({type:'link', href:href, target:target||'_blank'});
+    }
+  };
+})();
+
+// ── Page Navigation ────────────────────────────────────────────
 var currentPage='pageDashboard';
 function openPage(toId,fromId){
   if(toId===currentPage)return;
@@ -340,12 +537,53 @@ function openPage(toId,fromId){
     to.style.opacity='1';
     to.classList.add('active');
   });
-  setTimeout(function(){from.classList.remove('slide-out');from.style.transform='';from.style.opacity='';},230);
+  setTimeout(function(){from.classList.remove('slide-out');from.style.opacity='';from.style.transform='';},230);
   currentPage=toId;
   window.scrollTo({top:0,behavior:'instant'});
 }
 
-// Notification
+// ── Intercept all course-card clicks ──────────────────────────
+// Runs after DOM is ready. Wraps onclick (page nav) and href (external links).
+(function(){
+  function setupCards(){
+    document.querySelectorAll('.course-card').forEach(function(card){
+      // Skip back-btn inside top-bar (those are not course-cards, but guard anyway)
+      // External link cards (a[href])
+      if(card.tagName==='A' && card.getAttribute('href')){
+        var href = card.getAttribute('href');
+        var tgt  = card.getAttribute('target') || '_blank';
+        // Only intercept non-back-navigation links (real external links)
+        if(href && href !== '#'){
+          card.addEventListener('click', function(e){
+            e.preventDefault();
+            SU.interceptLink(href, tgt);
+          });
+        }
+        return;
+      }
+      // Div cards with onclick (internal page navigation)
+      var origOnclick = card.getAttribute('onclick');
+      if(origOnclick){
+        card.removeAttribute('onclick');
+        card.addEventListener('click', function(e){
+          // Parse openPage('toId','fromId') from the original onclick string
+          var match = origOnclick.match(/openPage\(['"]([^'"]+)['"],\s*['"]([^'"]+)['"]\)/);
+          if(match){
+            SU.interceptPage(match[1], match[2]);
+          }
+        });
+      }
+    });
+  }
+  // Run after DOM is fully parsed
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', setupCards);
+  } else {
+    setupCards();
+  }
+})();
+
+// ── Notification Bell ─────────────────────────────────────────
 document.getElementById('notificationBell').addEventListener('click',function(){
   var m=document.createElement('div');
   m.className='noti-modal';
@@ -355,19 +593,19 @@ document.getElementById('notificationBell').addEventListener('click',function(){
   document.body.appendChild(m);
 });
 
-// Scroll top
+// ── Scroll to Top ─────────────────────────────────────────────
 var sb=document.getElementById('scrollTopBtn');
 window.addEventListener('scroll',function(){sb.classList.toggle('show',window.scrollY>280);},{passive:true});
 sb.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 
-// Filter
+// ── Search / Filter ───────────────────────────────────────────
 function filterItems(input,selector){
   var f=input.value.toLowerCase().trim();
   var parent=input.closest('.container')||document;
   parent.querySelectorAll(selector).forEach(function(el){el.style.display=el.innerText.toLowerCase().includes(f)?'':'none';});
 }
 
-// PWA
+// ── PWA Manifest ──────────────────────────────────────────────
 (function(){
   var m={name:"𝑫𝒐𝒓𝒂𝒆𝒎𝒐𝒏 𝑾𝒐𝒓𝒍𝒅",short_name:"Doraemon",start_url:"/",display:"standalone",theme_color:"#e8f4fd",background_color:"#dff0fa",icons:[{src:"https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg",sizes:"192x192",type:"image/jpeg"},{src:"https://respectable-white-edvqf1wi.edgeone.dev/1000001644.jpg",sizes:"512x512",type:"image/jpeg"}]};
   var l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:'application/json'}));document.head.appendChild(l);
