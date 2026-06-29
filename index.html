@@ -399,6 +399,7 @@ a.course-card{color:inherit;display:flex;}
       </div>
       <div id="suCopiedMsg">✅ Link copied successfully. Please share it manually.</div>
       <button class="su-btn-share" id="suShareBtn">📤 Share with Multiple Friends to Unlock</button>
+      <button class="su-btn-done" id="suDoneBtn" style="margin-top:.55rem;display:none;">✅ I have already shared</button>
     </div>
   </div>
 
@@ -427,6 +428,7 @@ var SU = (function(){
   var STORAGE_KEY = 'share_unlock_v4';
   var overlay     = document.getElementById('shareUnlockOverlay');
   var shareBtn    = document.getElementById('suShareBtn');
+  var doneBtn     = document.getElementById('suDoneBtn');
   var copiedMsg   = document.getElementById('suCopiedMsg');
 
   // Pending action: {type:'page', toId, fromId} | {type:'link', href, target}
@@ -508,7 +510,14 @@ var SU = (function(){
     document.body.removeChild(ta);
   }
 
-  // Expose intercept functions
+  // "Already shared" button — sirf PC/desktop pe dikhao
+  if(!/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)){
+    doneBtn.style.display = 'block';
+  }
+  doneBtn.addEventListener('click', function(){
+    markUnlocked();
+    hideAndProceed();
+  });
   return {
     isUnlocked: isUnlocked,
     interceptPage: function(toId, fromId){
