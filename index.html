@@ -393,9 +393,12 @@ a.course-card{color:inherit;display:flex;}
         <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" target="_blank">💬 Join our WhatsApp Channel</a>
       </div>
       <p class="su-heart">❤️ Help more students by sharing this website.</p>
+      <div style="background:linear-gradient(135deg,rgba(255,200,0,.15),rgba(255,150,0,.1));border:1.5px solid rgba(255,180,0,.4);border-radius:.9rem;padding:.75rem 1rem;margin-bottom:.85rem;text-align:left;">
+        <p style="font-size:.82rem;font-weight:700;color:#b45309;margin-bottom:.35rem;">🔥 Important — Please Note:</p>
+        <p style="font-size:.78rem;color:#92400e;line-height:1.55;">Share this with <strong>at least 5 friends</strong> in different WhatsApp groups, chats or other platforms. The more you share, the more students get FREE content! 🙏</p>
+      </div>
       <div id="suCopiedMsg">✅ Link copied successfully. Please share it manually.</div>
-      <button class="su-btn-share" id="suShareBtn">📤 Share Now</button>
-      <button class="su-btn-done" id="suDoneBtn">✅ I Have Already Shared</button>
+      <button class="su-btn-share" id="suShareBtn">📤 Share with Multiple Friends to Unlock</button>
     </div>
   </div>
 
@@ -421,10 +424,9 @@ a.course-card{color:inherit;display:flex;}
 
 // ── Share Unlock Popup (share_unlock_v2) ───────────────────────
 var SU = (function(){
-  var STORAGE_KEY = 'share_unlock_v2';
+  var STORAGE_KEY = 'share_unlock_v4';
   var overlay     = document.getElementById('shareUnlockOverlay');
   var shareBtn    = document.getElementById('suShareBtn');
-  var doneBtn     = document.getElementById('suDoneBtn');
   var copiedMsg   = document.getElementById('suCopiedMsg');
 
   // Pending action: {type:'page', toId, fromId} | {type:'link', href, target}
@@ -460,7 +462,7 @@ var SU = (function(){
     }
   }
 
-  // Share Now button
+  // Share Now button — share karo, unlock ho, popup band, folder khule
   shareBtn.addEventListener('click', function(){
     var shareText =
       '🎓 FREE SSC Content Website\n\n' +
@@ -470,16 +472,20 @@ var SU = (function(){
 
     if(navigator.share){
       navigator.share({
-        title: '🎓 FREE SSC Content Website',
-        text: shareText,
-        url: 'https://tgdoraemon.vercel.app'
-      }).catch(function(){/* user cancelled */});
+        text: shareText
+      }).then(function(){
+        // Share complete — unlock karo aur proceed karo
+        markUnlocked();
+        hideAndProceed();
+      }).catch(function(){/* user cancelled — popup khula rahe */});
     } else {
-      // Fallback: copy URL to clipboard
+      // Fallback: copy karo aur unlock karo
       var text = 'https://tgdoraemon.vercel.app';
       if(navigator.clipboard && navigator.clipboard.writeText){
         navigator.clipboard.writeText(text).then(function(){
           copiedMsg.style.display='block';
+          markUnlocked();
+          setTimeout(hideAndProceed, 1500);
         }).catch(function(){ legacyCopy(text); });
       } else {
         legacyCopy(text);
@@ -493,15 +499,14 @@ var SU = (function(){
     ta.style.position='fixed';ta.style.opacity='0';
     document.body.appendChild(ta);
     ta.focus();ta.select();
-    try{ document.execCommand('copy'); copiedMsg.style.display='block'; }catch(e){}
+    try{
+      document.execCommand('copy');
+      copiedMsg.style.display='block';
+      markUnlocked();
+      setTimeout(hideAndProceed, 1500);
+    }catch(e){}
     document.body.removeChild(ta);
   }
-
-  // "I Have Already Shared" button
-  doneBtn.addEventListener('click', function(){
-    markUnlocked();
-    hideAndProceed();
-  });
 
   // Expose intercept functions
   return {
