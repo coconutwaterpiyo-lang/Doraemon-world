@@ -210,11 +210,11 @@ a.course-card{color:inherit;display:flex;}
     <div style="display:flex;flex-direction:column;gap:.7rem;">
       <a href="https://whatsapp.com/channel/0029Vb7n2ZBGE56cha5K7K3Z" target="_blank" id="joinWhatsAppBtn" class="btn btn-blue">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.8 3.08 1.23 4.79 1.23 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm.01 15.21c-1.36 0-2.69-.37-3.84-1.06l-2.81.74.75-2.73c-.75-1.18-1.15-2.55-1.15-3.96 0-4.18 3.4-7.58 7.58-7.58s7.58 3.4 7.58 7.58-3.4 7.58-7.58 7.58z"/><path d="M16.5 13.8c-.25-.12-1.47-.73-1.7-.81-.23-.08-.4-.12-.57.12-.17.24-.66.81-.81.98-.15.17-.3.19-.55.07-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.12-.12.25-.3.38-.45.13-.15.17-.25.25-.42.09-.17.04-.32-.02-.45-.06-.13-.57-1.37-.78-1.88-.2-.5-.4-.43-.57-.44-.15 0-.33-.01-.5-.01-.17 0-.45.06-.68.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.43 1.03 2.6.13.17 1.78 2.72 4.31 3.81.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
-        Join WhatsApp Channel
+        <span id="joinBtnText">Join WhatsApp Channel</span>
       </a>
       <button id="alreadyJoinedBtn" class="btn btn-light">✅ I have already joined</button>
     </div>
-    <p style="font-size:.72rem;color:#7a9ab0;margin-top:1rem;">* Open WhatsApp → Join → then tap "Already Joined"</p>
+    <p id="joinHintText" style="font-size:.72rem;color:#7a9ab0;margin-top:1rem;">* Open WhatsApp → Join → then tap "Already Joined"</p>
   </div>
 </div>
 
@@ -416,16 +416,37 @@ a.course-card{color:inherit;display:flex;}
 
 <script>
 // ── Welcome Modal ──────────────────────────────────────────────
+// Mobile pehle-hi visit: sirf "Join" button, "already joined" chhupa rehta hai (mandatory join).
+// Mobile agli visits: dono buttons normal.
+// PC/desktop: hamesha dono buttons (kabhi restrict nahi hota).
 (function(){
   var modal=document.getElementById('welcomeModal'),main=document.getElementById('mainContent');
-  function show(){modal.style.display='none';main.style.display='block';}
-  document.getElementById('joinWhatsAppBtn').addEventListener('click',show);
-  document.getElementById('alreadyJoinedBtn').addEventListener('click',show);
+  var joinBtn=document.getElementById('joinWhatsAppBtn');
+  var joinBtnText=document.getElementById('joinBtnText');
+  var alreadyBtn=document.getElementById('alreadyJoinedBtn');
+  var hintText=document.getElementById('joinHintText');
+  var VISITED_KEY='dw_visited'; // ⚠️ future updates me isko rename/version mat karna
+  var isMobile=/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+  var hasVisited=false;
+  try{ hasVisited = localStorage.getItem(VISITED_KEY)==='true'; }catch(e){}
+
+  if(isMobile && !hasVisited){
+    alreadyBtn.style.display='none';
+    joinBtnText.textContent='Join to Continue to this Website';
+    hintText.textContent='* Open WhatsApp → Join the Channel → Come back here to continue';
+  }
+
+  function markVisited(){ try{ localStorage.setItem(VISITED_KEY,'true'); }catch(e){} }
+  function show(){ modal.style.display='none'; main.style.display='block'; markVisited(); }
+
+  joinBtn.addEventListener('click',show);
+  alreadyBtn.addEventListener('click',show);
 })();
 
 // ── Share Unlock Popup (share_unlock_v2) ───────────────────────
 var SU = (function(){
-  var STORAGE_KEY = 'share_unlock_v4';
+  var STORAGE_KEY = 'share_unlock'; // ⚠️ future updates me isko kabhi rename/version mat karna
+                                     // (naam badalne se purana unlocked data "khoya hua" maan liya jaata hai)
   var overlay     = document.getElementById('shareUnlockOverlay');
   var shareBtn    = document.getElementById('suShareBtn');
   var doneBtn     = document.getElementById('suDoneBtn');
@@ -433,6 +454,22 @@ var SU = (function(){
 
   // Pending action: {type:'page', toId, fromId} | {type:'link', href, target}
   var _pending = null;
+
+  // Ek-baar purane versioned keys se migrate — jinhone already share/unlock kar liya tha
+  // unhe dubara popup na dikhe.
+  (function migrateOldKeys(){
+    try{
+      if(localStorage.getItem(STORAGE_KEY)!=='true'){
+        var oldKeys=['share_unlock_v4','share_unlock_v3','share_unlock_v2','share_unlock_v1'];
+        for(var i=0;i<oldKeys.length;i++){
+          if(localStorage.getItem(oldKeys[i])==='true'){
+            localStorage.setItem(STORAGE_KEY,'true');
+            break;
+          }
+        }
+      }
+    }catch(e){}
+  })();
 
   /** Has the user already unlocked? */
   function isUnlocked(){
